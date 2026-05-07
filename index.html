@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing-System Assessment – AI Performance Academy</title>
+<meta property="og:title" content="Marketing-System Assessment – AI Performance Academy">
+<meta property="og:description" content="Bewerte 25 Marketing-Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, welche KI-Agenten dir sofort helfen.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://holgergelhausen.github.io/ai-performance-academy-assets/og-assessment.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marketing-System Assessment – AI Performance Academy">
+<meta name="twitter:description" content="Bewerte 25 Marketing-Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, welche KI-Agenten dir sofort helfen.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23FF1A1A'/><text x='16' y='24' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='22'>A</text></svg>">
+<!-- Version: 6.0.0 - Marketing-System Assessment Light Theme – AI Performance Academy -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="AI-Performance-Academy-Farbpalette.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+/* Assessment Engine Styles v6.0.0 – LIGHT THEME */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #000000; --bg: #FFFFFF; --bg-card: #FFFFFF; --bg-card-hover: #F7F8FA;
+  --primary: #FF1A1A; --primary-light: #E01515; --primary-dark: #CC1515;
+  --gray: #767D8C; --gray-light: #767D8C; --gray-dark: #D9DDE3;
+  --white: #000000; --white-muted: #1F1F1F;
+  --tier-strategic: #3B82F6; --tier-content: #22C55E; --tier-channel: #F97316;
+  --tier-conversion: #EF4444; --tier-optimization: #A855F7;
+  --score-low: #EF4444; --score-mid: #F59E0B; --score-high: #22C55E;
+}
+body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--bg); color: var(--white-muted); min-height: 100vh; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.screen { display: none; min-height: 100vh; padding: 80px 0 40px; animation: fadeIn 0.4s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; border-bottom: 1px solid var(--gray-dark); height: 60px; }
+.nav-logo { font-size: 14px; font-weight: 800; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--gray); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--primary); }
+.logo-bar { display: none; }
+.landing-hero { text-align: center; padding: 60px 0 40px; }
+.landing-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
+.landing-hero h1 .accent { color: var(--primary); }
+.landing-hero .subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--gray-light); max-width: 600px; margin: 0 auto 40px; font-weight: 400; }
+.landing-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 48px; flex-wrap: wrap; }
+.landing-stat .number { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
+.landing-stat .label { font-size: 0.85rem; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; }
+.landing-stat { text-align: center; }
+.pyramid { max-width: 500px; margin: 0 auto 48px; }
+.pyramid-tier { display: flex; align-items: center; justify-content: center; padding: 14px 20px; margin: 4px auto; border-radius: 8px; font-weight: 700; font-size: 0.9rem; color: white; transition: transform 0.2s; cursor: default; }
+.pyramid-tier:hover { transform: scale(1.02); }
+.pyramid-tier.t-optimization { width: 50%; background: var(--tier-optimization); cursor: pointer; }
+.pyramid-tier.t-conversion { width: 62%; background: var(--tier-conversion); cursor: pointer; }
+.pyramid-tier.t-channel { width: 74%; background: var(--tier-channel); cursor: pointer; }
+.pyramid-tier.t-content { width: 86%; background: var(--tier-content); cursor: pointer; }
+.pyramid-tier.t-strategic { width: 98%; background: var(--tier-strategic); cursor: pointer; }
+.pyramid-count { font-size: 0.75rem; opacity: 0.8; margin-left: 8px; font-weight: 400; }
+.needs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto 40px; }
+.need-card { background: var(--bg-card); border: 2px solid var(--gray-dark); border-radius: 16px; padding: 24px 20px; cursor: pointer; transition: all 0.25s; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+.need-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: var(--need-color, var(--gray)); }
+.need-card .need-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+.need-card .need-name { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.need-card .need-divider { width: 40px; height: 2px; margin: 8px auto; border-radius: 1px; }
+.need-card .need-question { font-size: 0.85rem; color: var(--gray-light); line-height: 1.4; }
+.komplett-check-link { color: var(--gray-light); font-size: 0.9rem; cursor: pointer; margin-top: 24px; display: inline-block; border-bottom: 1px dashed var(--gray); transition: color 0.2s; }
+.komplett-check-link:hover { color: var(--white); }
+.need-header-banner { padding: 16px 24px; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
+.need-header-banner .need-header-icon { font-size: 1.8rem; }
+.need-header-banner h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); }
+.need-header-banner p { font-size: 0.85rem; margin-top: 4px; }
+.need-context-badge { font-size: 0.75rem; padding: 6px 12px; border-radius: 6px; margin-bottom: 8px; line-height: 1.4; }
+.need-context-badge.primary { border-left: 3px solid; }
+.need-context-badge.secondary { border-left: 3px dashed var(--gray); background: color-mix(in srgb, var(--gray) 5%, transparent); color: var(--gray-light); }
+.slider-item.need-dimmed { opacity: 0.55; }
+.slider-item.need-dimmed:hover { opacity: 0.8; }
+.need-score-section { text-align: center; margin-bottom: 32px; }
+.need-score-circle { width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--gray-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; position: relative; }
+.need-score-num { font-size: 2.5rem; font-weight: 900; }
+.need-score-label { font-size: 0.85rem; color: var(--gray-light); }
+.impact-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.impact-card.weakness { border-left: 4px solid var(--score-low); }
+.impact-card.strength { border-left: 4px solid var(--score-high); }
+.impact-card.blockade { border-left: 4px solid var(--score-mid); }
+.impact-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.impact-card p { font-size: 0.82rem; color: var(--gray-light); line-height: 1.5; }
+.impact-section { margin-bottom: 28px; }
+.impact-section h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-dark); }
+.plan-month { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.plan-month-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.plan-month-num { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; color: white; }
+.plan-month-title { font-size: 1rem; font-weight: 700; color: var(--white); }
+.plan-month-desc { font-size: 0.85rem; color: var(--gray-light); }
+.plan-action { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray-dark); }
+.plan-action:last-child { border-bottom: none; }
+.plan-action-score { min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: white; }
+.plan-action-info { flex: 1; }
+.plan-action-name { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+.plan-action-tip { font-size: 0.78rem; color: var(--gray-light); margin-top: 2px; }
+.plan-action-agent { font-size: 0.72rem; color: var(--tier-optimization); margin-top: 4px; }
+.landing-pyramid-section { display: none; }
+.landing-pyramid-section.visible { display: block; }
+.landing-needs-section { display: block; }
+.landing-needs-section.hidden { display: none; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white; border: none; padding: 16px 48px; font-size: 1.1rem; font-weight: 700; border-radius: 12px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+.btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,26,26,0.3); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); color: var(--white); border: 1px solid var(--gray-dark); padding: 12px 28px; font-size: 0.95rem; font-weight: 600; border-radius: 10px; cursor: pointer; font-family: inherit; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--gray); }
+.assessment-header { text-align: center; margin-bottom: 32px; }
+.assessment-header h2 { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.assessment-layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.tier-tabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+.tier-tab { padding: 10px 20px; border: 2px solid var(--gray-dark); background: transparent; color: var(--gray-light); font-family: inherit; font-weight: 600; font-size: 0.85rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.tier-tab:hover { border-color: var(--gray); }
+.tier-tab.active { color: white; border-color: var(--active-tier-color, var(--primary)); background: color-mix(in srgb, var(--active-tier-color, var(--primary)) 15%, transparent); }
+.slider-group { display: none; }
+.slider-group.active { display: block; }
+.slider-item { background: var(--bg-card); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; border: 1px solid var(--gray-dark); transition: border-color 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.slider-item:hover { border-color: var(--gray); }
+.slider-label { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.slider-name { font-weight: 700; font-size: 0.95rem; color: var(--white); }
+.slider-score { font-weight: 800; font-size: 1.1rem; min-width: 28px; text-align: right; }
+.slider-desc { font-size: 0.8rem; color: var(--gray-light); margin-bottom: 12px; }
+.slider-track { position: relative; width: 100%; height: 8px; background: var(--gray-dark); border-radius: 4px; margin-bottom: 8px; }
+.slider-track input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; outline: none; cursor: pointer; background: transparent; position: relative; z-index: 2; }
+.slider-track input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 3px solid var(--slider-color, var(--primary)); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.15s; }
+.slider-track input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.slider-track input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 3px solid var(--slider-color, var(--primary)); cursor: pointer; }
+.slider-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; z-index: 1; transition: width 0.15s; }
+.slider-levels { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--gray); }
+.thesen-list { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--gray-dark); }
+.thesen-header { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 8px; font-weight: 600; }
+.these-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; cursor: pointer; transition: opacity 0.15s; }
+.these-item:hover { opacity: 0.85; }
+.these-cb { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--gray); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.these-cb.checked { border-color: var(--score-high); background: var(--score-high); }
+.these-cb.checked::after { content: ''; display: block; width: 5px; height: 9px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); margin-top: -2px; }
+.these-text { flex: 1; font-size: 0.8rem; color: var(--gray-light); line-height: 1.4; user-select: none; }
+.these-item.checked .these-text { color: var(--white-muted); }
+.these-item:focus { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+.these-item:focus:not(:focus-visible) { outline: none; }
+.these-level-tag { font-size: 0.6rem; padding: 1px 6px; border-radius: 3px; font-weight: 600; color: white; flex-shrink: 0; margin-top: 2px; }
+.empfehlung-box { margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; line-height: 1.5; border-left: 3px solid var(--primary); }
+.empfehlung-box.action { background: color-mix(in srgb, var(--score-mid) 8%, transparent); border-left-color: var(--score-mid); }
+.empfehlung-box.good { background: color-mix(in srgb, var(--score-high) 8%, transparent); border-left-color: var(--score-high); }
+.empfehlung-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 4px; }
+.empfehlung-label.action { color: var(--score-mid); }
+.empfehlung-label.good { color: var(--score-high); }
+.ki-agent-hint { margin-top: 8px; padding: 10px 14px; background: color-mix(in srgb, var(--tier-optimization) 8%, transparent); border-radius: 8px; font-size: 0.78rem; color: var(--gray-light); border-left: 3px solid var(--tier-optimization); }
+.ki-agent-hint strong { color: var(--tier-optimization); }
+.radar-sidebar { position: sticky; top: 80px; }
+.radar-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.radar-card h3 { font-size: 0.9rem; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; text-align: center; }
+.radar-canvas-wrap { width: 280px; height: 280px; margin: 0 auto; }
+.tier-averages { margin-top: 16px; }
+.tier-avg-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+.tier-avg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.tier-avg-label { font-size: 0.8rem; color: var(--gray-light); flex: 1; }
+.tier-avg-val { font-weight: 700; font-size: 0.9rem; }
+.assessment-nav { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
+.progress-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.progress-track { flex: 1; height: 4px; background: var(--gray-dark); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary); border-radius: 2px; transition: width 0.3s; }
+.progress-label { font-size: 0.75rem; color: var(--gray); font-weight: 600; min-width: 80px; text-align: right; }
+.results-header { text-align: center; margin-bottom: 40px; }
+.results-header h2 { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.overall-score { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
+.score-circle { width: 160px; height: 160px; border-radius: 50%; border: 6px solid var(--gray-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; margin-bottom: 16px; }
+.score-circle-ring { position: absolute; top: -6px; left: -6px; width: 160px; height: 160px; }
+.score-circle-ring circle { fill: none; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 0.8s; }
+.score-number { font-size: 3rem; font-weight: 900; color: var(--white); }
+.score-percent { font-size: 1rem; color: var(--gray-light); }
+.score-label { font-size: 1rem; color: var(--gray-light); }
+.tier-bars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+.tier-bar-item { text-align: center; }
+.tier-bar-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.tier-bar-track { height: 120px; width: 40px; margin: 0 auto; background: var(--bg-card-hover); border-radius: 20px; position: relative; overflow: hidden; border: 1px solid var(--gray-dark); }
+.tier-bar-fill { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 20px; transition: height 0.6s; }
+.tier-bar-val { font-size: 1.1rem; font-weight: 800; margin-top: 8px; }
+.results-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--gray-dark); overflow-x: auto; }
+.results-tab { padding: 12px 20px; background: transparent; border: none; color: var(--gray-light); font-family: inherit; font-weight: 600; font-size: 0.85rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+.results-tab:hover { color: var(--white); }
+.results-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.results-panel { display: none; animation: fadeIn 0.3s; }
+.results-panel.active { display: block; }
+.radar-results-wrap { max-width: 500px; margin: 0 auto; }
+.heatmap-table { width: 100%; border-collapse: separate; border-spacing: 0 4px; }
+.heatmap-table th { text-align: left; padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); font-weight: 600; }
+.heatmap-table td { padding: 12px 16px; background: var(--bg-card-hover); font-size: 0.85rem; color: var(--white-muted); }
+.heatmap-table tr td:first-child { border-radius: 8px 0 0 8px; }
+.heatmap-table tr td:last-child { border-radius: 0 8px 8px 0; }
+.heatmap-score { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; color: white; }
+.heatmap-score.low { background: var(--score-low); }
+.heatmap-score.mid { background: var(--score-mid); }
+.heatmap-score.high { background: var(--score-high); }
+.heatmap-tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; color: white; }
+.heatmap-priority-bar { width: 80px; height: 6px; background: var(--gray-dark); border-radius: 3px; overflow: hidden; }
+.heatmap-priority-fill { height: 100%; border-radius: 3px; background: var(--primary); }
+.heatmap-table tbody tr { cursor: pointer; transition: background 0.15s; }
+.heatmap-table tbody tr:hover td { background: #EEF0F4; }
+.dep-flow { background: var(--bg-card-hover); border-radius: 12px; padding: 32px; border: 1px solid var(--gray-dark); overflow-x: auto; }
+.dep-flow svg { width: 100%; min-width: 1100px; height: 700px; }
+.dep-node { cursor: pointer; transition: opacity 0.2s; }
+.dep-node text { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; fill: white; }
+.dep-line { stroke: var(--gray); stroke-width: 1.5; fill: none; transition: stroke 0.2s, stroke-width 0.2s; opacity: 0.4; }
+.dep-line.highlight { stroke: var(--primary); stroke-width: 3; opacity: 1; }
+.dep-name-label { font-family: 'Montserrat', sans-serif; font-size: 9.5px; fill: var(--gray-light); font-weight: 500; }
+.dep-legend-text { font-family: 'Montserrat', sans-serif; font-size: 11px; fill: var(--gray-light); font-weight: 500; }
+.dep-legend-hint { font-family: 'Montserrat', sans-serif; font-size: 10px; fill: var(--gray); font-weight: 400; font-style: italic; }
+.priority-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.priority-head { display: grid; grid-template-columns: 40px 1fr auto; gap: 16px; align-items: center; }
+.priority-rank { font-size: 1.5rem; font-weight: 900; color: var(--primary); }
+.priority-info h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.priority-info p { font-size: 0.8rem; color: var(--gray-light); }
+.priority-impact { text-align: center; }
+.priority-impact .val { font-size: 1.5rem; font-weight: 900; color: var(--primary-light); }
+.priority-impact .lbl { font-size: 0.65rem; color: var(--gray); text-transform: uppercase; }
+.priority-tip { margin-top: 12px; padding: 12px 16px; background: color-mix(in srgb, var(--primary) 6%, transparent); border-radius: 8px; font-size: 0.8rem; color: var(--gray-light); border-left: 3px solid var(--primary); }
+.priority-agent { margin-top: 8px; padding: 10px 14px; background: color-mix(in srgb, var(--tier-optimization) 6%, transparent); border-radius: 8px; font-size: 0.78rem; color: var(--gray-light); border-left: 3px solid var(--tier-optimization); }
+.priority-agent strong { color: var(--tier-optimization); }
+.agent-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 24px; margin-bottom: 16px; display: grid; grid-template-columns: 48px 1fr; gap: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.agent-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 900; color: white; }
+.agent-card h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.agent-card .agent-desc { font-size: 0.85rem; color: var(--gray-light); margin-bottom: 10px; line-height: 1.5; }
+.agent-card .agent-prompt { background: var(--bg-card-hover); border: 1px solid var(--gray-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; color: var(--gray-light); }
+.agent-card .agent-prompt::before { content: 'Beispiel-Prompt: '; color: var(--tier-optimization); font-weight: 600; font-family: 'Montserrat', sans-serif; }
+.export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px; }
+.export-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.export-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.export-card p { font-size: 0.85rem; color: var(--gray-light); margin-bottom: 16px; }
+.prompt-preview { background: var(--bg-card-hover); border: 1px solid var(--gray-dark); border-radius: 8px; padding: 16px; font-size: 0.75rem; color: var(--gray-light); font-family: 'SF Mono', 'Fira Code', monospace; max-height: 200px; overflow-y: auto; margin-bottom: 16px; white-space: pre-wrap; line-height: 1.5; }
+.share-url { background: var(--bg-card-hover); border: 1px solid var(--gray-dark); border-radius: 8px; padding: 12px 16px; font-size: 0.8rem; color: var(--gray-light); font-family: monospace; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 16px; }
+.copy-feedback { color: var(--score-high); font-size: 0.8rem; font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-left: 8px; }
+.copy-feedback.show { opacity: 1; }
+.akademie-cta { background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--bg-card-hover)), var(--bg-card)); border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--gray-dark)); border-radius: 16px; padding: 32px; text-align: center; margin-top: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.akademie-cta h3 { font-size: 1.3rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.akademie-cta p { color: var(--gray-light); margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.tooltip { position: fixed; background: #FFFFFF; border: 1px solid var(--gray-dark); border-radius: 8px; padding: 12px 16px; font-size: 0.8rem; color: var(--white-muted); max-width: 280px; z-index: 200; pointer-events: none; opacity: 0; transition: opacity 0.15s; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.tooltip.visible { opacity: 1; }
+@media print {
+  body { background: white; color: #222; }
+  .nav, .tier-tabs, .assessment-nav, .results-tabs, .btn-primary, .btn-secondary, .export-grid, .akademie-cta { display: none !important; }
+  .screen { display: block !important; page-break-inside: avoid; padding-top: 20px; min-height: auto; }
+  .screen#screen-landing, .screen#screen-assessment, .screen#screen-export { display: none !important; }
+  .results-panel { display: block !important; page-break-inside: avoid; margin-bottom: 20px; }
+  .container { max-width: 100%; }
+  .tier-bar-track { background: #eee; } .dep-flow { border: 1px solid #ddd; }
+  .heatmap-table td { background: #f8f8f8; } .priority-card, .agent-card { background: #f8f8f8; border-color: #ddd; }
+  .score-circle { border-color: #ddd; } h2, h3, h4 { color: #111 !important; }
+  .print-title { display: block !important; text-align: center; font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: #111; }
+}
+.print-title { display: none; }
+.btn-reset { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--gray-light); border: 1px solid var(--gray-dark); padding: 10px 20px; font-size: 0.8rem; font-weight: 600; border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.btn-reset:hover { color: var(--score-low); border-color: var(--score-low); background: color-mix(in srgb, var(--score-low) 8%, transparent); }
+.tier-tab-badge { font-size: 0.65rem; margin-left: 6px; padding: 1px 6px; border-radius: 10px; background: var(--gray-dark); color: var(--gray-light); font-weight: 600; }
+.tier-tab-badge.complete { background: var(--score-high); color: white; }
+.celebration-banner { position: fixed; top: 60px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--score-high), #059669); color: white; padding: 14px 32px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; z-index: 150; box-shadow: 0 8px 32px rgba(34,197,94,0.3); animation: celebrationSlide 0.5s ease; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.celebration-banner.show { opacity: 1; pointer-events: auto; }
+@keyframes celebrationSlide { from { transform: translateX(-50%) translateY(-20px); } to { transform: translateX(-50%) translateY(0); } }
+.agent-prompt-wrap { position: relative; }
+.btn-copy-prompt { position: absolute; top: 8px; right: 8px; background: var(--bg-card-hover); border: 1px solid var(--gray-dark); color: var(--gray-light); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.btn-copy-prompt:hover { background: var(--gray-dark); color: var(--white); }
+.dep-intro { color: var(--gray-light); font-size: 0.85rem; margin-bottom: 16px; line-height: 1.6; }
+.dep-intro strong { color: var(--white-muted); }
+.dep-scroll-hint { display: none; text-align: center; font-size: 0.75rem; color: var(--gray); margin-bottom: 12px; padding: 8px; background: color-mix(in srgb, var(--gray-dark) 50%, transparent); border-radius: 6px; }
+@media (max-width: 1200px) { .dep-scroll-hint { display: block; } }
+@media (max-width: 900px) {
+  .assessment-layout { grid-template-columns: 1fr; }
+  .radar-sidebar { position: static; order: -1; }
+  .radar-canvas-wrap { width: 220px; height: 220px; }
+}
+@media (max-width: 600px) {
+  .landing-stats { gap: 20px; }
+  .pyramid-tier { font-size: 0.75rem; padding: 10px 14px; }
+  .tier-bars { grid-template-columns: repeat(3, 1fr); }
+  .export-grid { grid-template-columns: 1fr; }
+  .agent-card { grid-template-columns: 1fr; }
+  .needs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .need-card { padding: 16px 12px; }
+  .need-card .need-icon { font-size: 1.5rem; }
+  .need-card .need-name { font-size: 0.85rem; }
+  .need-card .need-question { font-size: 0.75rem; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 11px; }
+}
+@media (max-width: 380px) {
+  .needs-grid { grid-template-columns: 1fr; max-width: 280px; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo">AI PERFORMANCE ACADEMY</div>
+  <div class="nav-links">
+    <a href="#" onclick="showScreen('landing')">Start</a>
+    <a href="#" onclick="showScreen('assessment')">Assessment</a>
+    <a href="#" onclick="showScreen('results')">Ergebnisse</a>
+    <a href="#" onclick="showScreen('export')">Export</a>
+  </div>
+</nav>
+<div class="tooltip" id="tooltip"></div>
+<div class="celebration-banner" id="celebrationBanner">&#127881; Alle 25 Bausteine bewertet! Schau dir jetzt deine Ergebnisse an.</div>
+<div class="screen active" id="screen-landing">
+<div class="container">
+  <div class="landing-hero">
+    <div class="landing-needs-section" id="landingNeedsSection">
+      <h1>Was ist dein groesster <span class="accent">Marketing-Engpass</span>?</h1>
+      <p class="subtitle">Waehle dein Ziel — wir zeigen dir, was dich zurueckhaelt.</p>
+      <div class="needs-grid" id="needsGrid"></div>
+      <div class="landing-stats">
+        <div class="landing-stat"><div class="number">25</div><div class="label">Bausteine</div></div>
+        <div class="landing-stat"><div class="number">125</div><div class="label">Checks</div></div>
+        <div class="landing-stat"><div class="number">5</div><div class="label">Minuten</div></div>
+      </div>
+      <div style="margin-top:8px;">
+        <span class="komplett-check-link" onclick="startKomplettCheck()">Oder: Alle 25 Bausteine bewerten &#8594;</span>
+      </div>
+    </div>
+    <div class="landing-pyramid-section" id="landingPyramidSection">
+      <h1>Wie gut ist dein <span class="accent">Marketing-System</span>?</h1>
+      <p class="subtitle">Bewerte 25 Marketing-Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, welche KI-Agenten dir sofort helfen koennen.</p>
+      <div class="landing-stats">
+        <div class="landing-stat"><div class="number">25</div><div class="label">Bausteine</div></div>
+        <div class="landing-stat"><div class="number">125</div><div class="label">Hypothesen</div></div>
+        <div class="landing-stat"><div class="number">5</div><div class="label">Minuten</div></div>
+      </div>
+      <div class="pyramid" id="pyramidContainer"></div>
+      <button class="btn-primary" onclick="showScreen('assessment')">Komplett-Check starten &#8594;</button>
+      <div style="margin-top:16px;">
+        <span class="komplett-check-link" onclick="showNeedsLanding()">&#8592; Zurueck zur Beduerfnis-Auswahl</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="screen" id="screen-assessment">
+<div class="container">
+  <div class="need-header-banner" id="needHeaderBanner" style="display:none"></div>
+  <div class="assessment-header">
+    <h2>Bewerte deine Marketing-Bausteine</h2>
+    <p style="color:var(--gray-light);font-size:0.85rem;margin-bottom:16px">Hake die Aussagen an, die auf dein Unternehmen zutreffen. Der Score berechnet sich automatisch.</p>
+    <div class="progress-bar"><div class="progress-track"><div class="progress-fill" id="assessmentProgress"></div></div><div class="progress-label" id="assessmentProgressLabel">0 / 25</div></div>
+  </div>
+  <div class="assessment-layout">
+    <div class="assessment-sliders">
+      <div class="tier-tabs" id="tierTabs"></div>
+      <div id="sliderGroups"></div>
+      <div class="assessment-nav">
+        <button class="btn-secondary" onclick="showScreen('landing')">&#8592; Zurueck</button>
+        <button class="btn-reset" onclick="resetAssessment()">&#8634; Zuruecksetzen</button>
+        <button class="btn-primary" onclick="showResults()">Ergebnisse anzeigen &#8594;</button>
+      </div>
+    </div>
+    <div class="radar-sidebar">
+      <div class="radar-card">
+        <h3>Live-Uebersicht</h3>
+        <div class="radar-canvas-wrap"><canvas id="miniRadar"></canvas></div>
+        <div class="tier-averages" id="tierAverages"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="screen" id="screen-results">
+<div class="container">
+  <h2 class="print-title">Marketing-System Assessment – AI Performance Academy - Ergebnisse</h2>
+  <div class="results-header"><h2>Deine Ergebnisse</h2></div>
+  <div class="overall-score">
+    <div class="score-circle">
+      <svg class="score-circle-ring" viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="74" stroke="var(--gray-dark)" stroke-width="6" fill="none"/>
+        <circle cx="80" cy="80" r="74" id="scoreRing" stroke="var(--primary)" stroke-width="6" fill="none" stroke-dasharray="465" stroke-dashoffset="465" transform="rotate(-90 80 80)"/>
+      </svg>
+      <div class="score-number" id="overallScoreNum">0</div>
+      <div class="score-percent">%</div>
+    </div>
+    <div class="score-label" id="overallScoreLabel">Gesamt-Score</div>
+  </div>
+  <div class="tier-bars" id="tierBars"></div>
+  <div class="results-tabs" id="resultsTabs">
+    <button class="results-tab active" onclick="showResultTab('radar')">Radar</button>
+    <button class="results-tab" onclick="showResultTab('heatmap')">Heat Map</button>
+    <button class="results-tab" onclick="showResultTab('dependencies')">Abhaengigkeiten</button>
+    <button class="results-tab" onclick="showResultTab('priorities')">Top-5 Prioritaeten</button>
+    <button class="results-tab" onclick="showResultTab('agents')">KI-Agenten</button>
+  </div>
+  <div class="results-panel active" id="panel-radar"><div class="radar-results-wrap"><canvas id="resultsRadar"></canvas></div></div>
+  <div class="results-panel" id="panel-heatmap"><table class="heatmap-table"><thead><tr><th>Baustein</th><th>Tier</th><th>Score</th><th>Level</th><th>Prioritaet</th></tr></thead><tbody id="heatmapBody"></tbody></table></div>
+  <div class="results-panel" id="panel-dependencies">
+    <div class="dep-intro"><strong>So haengen deine Marketing-Bausteine zusammen.</strong> Jeder Kreis ist ein Baustein - die Farbe zeigt den Score (rot = kritisch, gelb = ausbaufaehig, gruen = gut). Groessere Kreise haben mehr abhaengige Bausteine. <strong>Hover ueber einen Kreis</strong> um seine Verbindungen zu sehen.</div>
+    <div class="dep-scroll-hint">&#8592; Horizontal scrollen fuer die volle Ansicht &#8594;</div>
+    <div class="dep-flow" id="depFlow"></div>
+  </div>
+  <div class="results-panel" id="panel-priorities"><div id="prioritiesList"></div></div>
+  <div class="results-panel" id="panel-agents"><div id="agentsList"></div></div>
+  <div class="results-panel" id="panel-needgoal" style="display:none"><div id="needGoalContent"></div></div>
+  <div class="results-panel" id="panel-plan" style="display:none"><div id="planContent"></div></div>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+    <button class="btn-secondary" onclick="showScreen('assessment')">&#8592; Assessment bearbeiten</button>
+    <button class="btn-primary" onclick="showScreen('export')">Export & Teilen &#8594;</button>
+  </div>
+</div>
+</div>
+<div class="screen" id="screen-export">
+<div class="container">
+  <div class="results-header"><h2>Export & Teilen</h2></div>
+  <div class="export-grid">
+    <div class="export-card">
+      <h3>KI-Prompt exportieren</h3>
+      <p>Kopiere diesen Prompt in ChatGPT oder Claude fuer eine personalisierte Analyse mit 90-Tage-Aktionsplan und KI-Agent-Empfehlungen.</p>
+      <div class="prompt-preview" id="promptPreview"></div>
+      <button class="btn-secondary" onclick="copyPrompt()">In Zwischenablage kopieren<span class="copy-feedback" id="copyFeedback">Kopiert!</span></button>
+    </div>
+    <div class="export-card">
+      <h3>PDF herunterladen</h3>
+      <p>Drucke deine Ergebnisse als PDF mit Radar-Chart, Heat Map, Prioritaeten und KI-Agent-Empfehlungen.</p>
+      <button class="btn-secondary" onclick="window.print()">PDF drucken (Cmd+P)</button>
+    </div>
+    <div class="export-card">
+      <h3>Link teilen</h3>
+      <p>Teile deine Ergebnisse per Link. Der Empfaenger sieht sofort deine Bewertungen.</p>
+      <div class="share-url" id="shareUrl"></div>
+      <button class="btn-secondary" onclick="copyShareUrl()">Link kopieren<span class="copy-feedback" id="shareFeedback">Kopiert!</span></button>
+    </div>
+  </div>
+  <div class="akademie-cta" id="akademieCta">
+    <h3 id="ctaTitle">Bereit fuer den naechsten Schritt?</h3>
+    <p id="ctaText">Die AI Performance Academy zeigt dir, wie du KI-Agenten fuer dein Marketing einsetzt.</p>
+    <a href="https://ai-performance.academy" target="_blank" class="btn-primary" style="text-decoration:none;">Mehr erfahren &#8594;</a>
+  </div>
+  <div style="text-align:center;margin-top:24px;"><button class="btn-secondary" onclick="showScreen('results')">&#8592; Zurueck zu Ergebnissen</button></div>
+</div>
+</div>
+<script>
+const CONFIG = {"meta":{"id":"marketing-assessment","version":"6.0.0","title":"Marketing-System Assessment – AI Performance Academy","subtitle":"Waehle dein Ziel — wir zeigen dir, was dich zurueckhaelt.","description":"Bewerte 25 Marketing-Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, welche KI-Agenten dir sofort helfen.","lang":"de","ogImage":"https://holgergelhausen.github.io/ai-performance-academy-assets/og-assessment.png","faviconLetter":"A","logoBarLabel":"Marketing Assessment","logoUrl":"https://holgergelhausen.github.io/ai-performance-academy-assets/logo-400-transparent.png","academyUrl":"https://ai-performance.academy","academyName":"AI Performance Academy"},"theme":{"primaryColor":"#FF1A1A","primaryColorLight":"#FF4444","primaryColorDark":"#CC1515"},"labels":{"landingHeadline":"Was ist dein groesster","landingAccent":"Marketing-Engpass","landingSubtitle":"Waehle dein Ziel — wir zeigen dir, was dich zurueckhaelt.","komplettCheckHeadline":"Wie gut ist dein","komplettCheckAccent":"Marketing-System","komplettCheckSubtitle":"Bewerte 25 Marketing-Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, welche KI-Agenten dir sofort helfen koennen.","componentLabel":"Bausteine","checksLabel":"Checks","hypothesesLabel":"Hypothesen","assessmentDuration":"5 Minuten","assessmentTitle":"Bewerte deine Marketing-Bausteine","assessmentSubtitle":"Hake die Aussagen an, die auf dein Unternehmen zutreffen. Der Score berechnet sich automatisch.","thesenHeader":"Trifft das auf dich zu?","resultsTitle":"Deine Ergebnisse","exportTitle":"Export & Teilen","scoreLabels":{"excellent":"Exzellent - Dein Marketing ist sehr gut aufgestellt","good":"Gut - Solide Basis mit Optimierungspotenzial","expandable":"Ausbaufaehig - Wichtige Luecken vorhanden","critical":"Kritisch - Grundlagen muessen geschaffen werden"},"needScoreLabels":{"good":"Du bist gut aufgestellt","medium":"Solide Basis — aber Luecken vorhanden","critical":"Kritische Luecken blockieren dein Ziel"},"depIntroText":"So haengen deine Marketing-Bausteine zusammen.","ctaDefaultText":"Die AI Performance Academy zeigt dir, wie du KI-Agenten fuer dein Marketing einsetzt."},"scoring":{"checkToScoreMap":[1,2,3,4,4,5],"needPrimaryMultiplier":2,"needSecondaryMultiplier":1.3,"needIrrelevantMultiplier":0.3,"dependencyWeight":0.15},"tiers":[{"id":"strategic","name":"Strategy","color":"#3B82F6","weight":0.35},{"id":"content","name":"Content","color":"#22C55E","weight":0.25},{"id":"channel","name":"Channel","color":"#F97316","weight":0.2},{"id":"conversion","name":"Conversion","color":"#EF4444","weight":0.15},{"id":"optimization","name":"Optimization","color":"#A855F7","weight":0.05}],"levels":["Ad-hoc","Basic","Definiert","Managed","Optimized"],"components":[{"id":1,"name":"ICP Definition","tier":"strategic","desc":"Ideal Customer Profile klar definiert und datenbasiert?","related":[2,5,6,8,13,17,22],"levels":["Kein ICP","Grobe Vorstellung","Dokumentiert","Datenbasiert validiert","KI-optimiert, dynamisch"],"theses":["Wir haben ein dokumentiertes Profil unseres idealen Kunden.","Unser ICP enthaelt konkrete Kriterien: Branche, Groesse, Budget, Problem.","Das ICP wird regelmaessig anhand echter Kundendaten validiert und aktualisiert.","Alle Marketing-Massnahmen werden vor dem Start gegen das ICP geprueft.","Ein KI-System analysiert Kundendaten und schlaegt ICP-Anpassungen automatisch vor."],"recommendations":["Fuehre 5 Kundeninterviews in den naechsten 2 Wochen.","Dokumentiere dein ICP als konkreten 1-Pager mit Kriterien.","Gleiche Top-Kunden mit dem ICP ab - stimmen die Merkmale ueberein?","Automatisiere die ICP-Validierung mit quartalsweisen Daten-Reviews.","Stark! Teile dein ICP-Wissen im Team und challenget es regelmaessig."],"aiAgent":"Ein ICP-Agent kann deine CRM-Daten analysieren, Muster in deinen profitabelsten Kunden finden und dein ICP automatisch verfeinern.","aiPrompt":"Analysiere meine Top-20-Kunden nach gemeinsamen Merkmalen und schlage ein optimiertes ICP vor."},{"id":2,"name":"Personas","tier":"strategic","desc":"Detaillierte Buyer-Personas mit Beduerfnissen und Pain Points?","related":[1,6,8,11],"levels":["Keine Personas","Einfache Steckbriefe","Recherche-basiert","Daten + Interviews","KI-generiert, laufend aktualisiert"],"theses":["Wir haben mindestens eine dokumentierte Buyer-Persona.","Unsere Personas enthalten konkrete Pain Points, Ziele und Entscheidungskriterien.","Die Personas basieren auf echten Kundeninterviews, nicht nur Team-Annahmen.","Bei Content-Erstellung wird aktiv gefragt: Fuer welche Persona ist das?","KI-Tools reichern unsere Personas laufend mit neuen Verhaltensmustern an."],"recommendations":["Erstelle eine erste Persona basierend auf deinem besten Kunden.","Ergaenze die Persona um echte Zitate und Pain Points aus Gespraechen.","Fuehre 3 strukturierte Kundeninterviews und validiere die Annahmen.","Mache Personas zum Standard-Check bei jeder Content-Planung.","Exzellent! Nutze KI um Persona-Updates aus Support-Daten abzuleiten."],"aiAgent":"Ein Persona-Agent kann Kundenreviews, Support-Tickets und Interviewtranskripte analysieren und daraus lebendige, datenbasierte Personas generieren.","aiPrompt":"Erstelle aus diesen 10 Kundenfeedbacks eine detaillierte Buyer-Persona mit Pain Points und Kaufmotiven."},{"id":3,"name":"Marktanalyse","tier":"strategic","desc":"Systematische Markt- und Trendbeobachtung?","related":[4,5,7],"levels":["Kein Monitoring","Gelegentlich googlen","Quartalsweise Berichte","Systematisches Tracking","KI-gestuetzte Echtzeit-Analyse"],"theses":["Wir verfolgen Markttrends - auch wenn nur informal.","Es gibt definierte Quellen und Zeitpunkte fuer die Marktbeobachtung.","Markterkenntnisse werden dokumentiert und im Team kommuniziert.","Wir nutzen Marktdaten aktiv fuer strategische Entscheidungen.","KI-Tools scannen und aggregieren Marktinformationen automatisch fuer uns."],"recommendations":["Definiere 5 Branchenquellen, die du woechentlich checkst.","Erstelle einen einfachen monatlichen Markt-Snapshot fuer dein Team.","Baue einen Prozess auf, wie Marktveraenderungen ins Team fliessen.","Nutze die Daten fuer konkrete strategische Entscheidungen.","Top! Lass KI-Agenten das Monitoring automatisieren."],"aiAgent":"Ein Marktanalyse-Agent kann Branchennews, Studien und Social-Media-Trends automatisch scannen und dir wochentliche Markt-Briefings erstellen.","aiPrompt":"Recherchiere die 5 wichtigsten Trends in [Branche] der letzten 30 Tage mit Quellen."},{"id":4,"name":"Wettbewerb","tier":"strategic","desc":"Wettbewerber-Analyse und Differenzierung?","related":[3,5,13],"levels":["Unbekannt","Einzelne kennen","Dokumentierte Analyse","Benchmark-Monitoring","KI-gestuetztes Competitive Intelligence"],"theses":["Wir koennen unsere wichtigsten Wettbewerber spontan benennen.","Wir kennen die Preise und Staerken der Top-5-Wettbewerber.","Es gibt eine dokumentierte Wettbewerbsanalyse mit Differenzierungsmerkmalen.","Wir beobachten Wettbewerber-Aktivitaeten systematisch und regelmaessig.","KI-Tools tracken Wettbewerber-Websites, Preise und Kampagnen automatisch."],"recommendations":["Liste deine 5 wichtigsten Wettbewerber auf und notiere je 3 Staerken.","Erstelle eine Vergleichsmatrix: Preis, Features, Positionierung.","Definiere klar, was dich von jedem Wettbewerber unterscheidet.","Richte ein monatliches Wettbewerber-Monitoring ein.","Stark! Nutze KI fuer automatisiertes Competitive Intelligence."],"aiAgent":"Ein Competitive-Intelligence-Agent kann Wettbewerber-Websites, Social Media und Bewertungsportale automatisch ueberwachen und dich bei Aenderungen alertieren.","aiPrompt":"Vergleiche [Firma X] und [Firma Y] in Bezug auf Pricing, Features und Kundenbewertungen."},{"id":5,"name":"Positionierung","tier":"strategic","desc":"Klare Markenpositionierung und Differenzierung?","related":[1,3,4,8,9],"levels":["Keine Positionierung","Vage Idee","Klar formuliert","Am Markt validiert","Datengetrieben optimiert"],"theses":["Wir koennen erklaeren, wofuer unsere Marke steht.","Unsere Positionierung ist schriftlich fixiert und im Team bekannt.","Kunden beschreiben uns aehnlich, wie wir uns selbst positionieren.","Die Positionierung unterscheidet sich klar von mindestens 3 Wettbewerbern.","Wir testen und optimieren unsere Positionierung datenbasiert."],"recommendations":["Formuliere in einem Satz, was dein Unternehmen einzigartig macht.","Schreibe deine Positionierung auf und teile sie mit dem ganzen Team.","Frage 5 Kunden: Warum hast du dich fuer uns entschieden?","Gleiche Fremd- und Selbstbild ab und schaerfe die Positionierung.","Exzellent! Teste Positionierungsvarianten in Ads und Landing Pages."],"aiAgent":"Ein Positionierungs-Agent kann Kundenfeedback, Bewertungen und Wettbewerbsdaten analysieren und Luecken in deiner Marktpositionierung identifizieren.","aiPrompt":"Analysiere diese 20 Kundenbewertungen: Welche Attribute verbinden Kunden am staerksten mit unserer Marke?"},{"id":6,"name":"Content-Plan","tier":"content","desc":"Strukturierter Content-Kalender und -Strategie?","related":[1,2,7,8,9,10],"levels":["Spontan","Lose Ideen-Liste","Redaktionsplan","Multi-Channel-Strategie","KI-optimierter Content-Engine"],"theses":["Wir erstellen regelmaessig Content fuer unsere Zielgruppe.","Es gibt einen Content-Kalender mit Themen fuer mindestens 2 Wochen.","Jedes Content-Stueck ist einer Phase der Customer Journey zugeordnet.","Content wird systematisch fuer mehrere Kanaele wiederverwendet.","KI-Tools generieren Content-Ideen und Redaktionsplaene automatisch."],"recommendations":["Plane 4 Content-Stuecke fuer die naechsten 2 Wochen.","Erstelle einen einfachen Redaktionsplan (Spreadsheet reicht).","Ordne jeden Content einer Journey-Phase zu: Awareness, Consideration, Decision.","Baue einen Repurposing-Workflow: 1 Content → 5 Formate.","Top! Lass KI-Agenten den Content-Plan vorschlagen und optimieren."],"aiAgent":"Ein Content-Strategie-Agent kann aus deinem ICP und Keyword-Daten einen kompletten Redaktionsplan mit Themen, Formaten und Kanaelen generieren.","aiPrompt":"Erstelle einen 4-Wochen-Content-Plan fuer [Branche] mit je 3 Posts pro Woche, aufgeteilt nach Awareness, Consideration und Decision."},{"id":7,"name":"SEO","tier":"content","desc":"Keyword-Strategie und organische Sichtbarkeit?","related":[6,11,16],"levels":["Kein SEO","Basis-Keywords","On-Page optimiert","Technisch + Content SEO","KI-gestuetzte SEO-Automatisierung"],"theses":["Wir wissen, nach welchen Begriffen unsere Zielgruppe sucht.","Die wichtigsten Keywords sind dokumentiert und werden getrackt.","Jeder neue Content wird vor Veroeffentlichung SEO-optimiert.","Organischer Traffic ist ein relevanter Akquise-Kanal fuer uns.","KI-Tools recherchieren Keywords und optimieren Content automatisch."],"recommendations":["Recherchiere 10 Keywords, die deine Zielkunden googlen.","Erstelle eine Keyword-Liste und tracke Rankings monatlich.","Optimiere deine 5 wichtigsten Seiten auf die Top-Keywords.","Baue eine Content-SEO-Strategie mit regelmässigen neuen Inhalten.","Stark! Automatisiere Keyword-Research und On-Page-Optimierung mit KI."],"aiAgent":"Ein SEO-Agent kann Keyword-Chancen identifizieren, Content-Briefings mit Suchintention erstellen und bestehende Seiten auf Optimierungspotenzial pruefen.","aiPrompt":"Finde 20 Keywords mit hohem Suchvolumen und niedriger Konkurrenz fuer [Branche/Thema]."},{"id":8,"name":"Copywriting","tier":"content","desc":"Ueberzeugende Texte fuer alle Kanaele?","related":[2,5,6,9],"levels":["Improvisation","Templates vorhanden","Professionelle Texte","A/B-getestet","KI-generiert + menschlich optimiert"],"theses":["Unsere Texte sprechen die Sprache unserer Kunden.","Es gibt Vorlagen fuer die wichtigsten Textformate.","Texte werden vor Veroeffentlichung von jemandem gegengelesen.","Wir testen verschiedene Textvarianten und messen die Wirkung.","KI generiert Textentwuerfe, die ein Mensch verfeinert und freigibt."],"recommendations":["Sammle 10 Kundenzitate und nutze deren Wortwahl in deinen Texten.","Erstelle Templates fuer E-Mail, Social Post, Ad und Landing Page.","Hole dir Feedback von 3 Kunden zu deinen wichtigsten Texten.","Starte A/B-Tests fuer Headlines und CTAs.","Exzellent! Nutze KI-Copywriting mit menschlichem Quality Gate."],"aiAgent":"Ein Copywriting-Agent kann aus deiner Brand Voice und Persona Texte fuer jeden Kanal generieren - von Ad Copy bis Newsletter, immer in deinem Tonfall.","aiPrompt":"Schreibe 5 LinkedIn-Post-Varianten zum Thema [X] im Tonfall [Brand Voice]. Zielgruppe: [Persona]."},{"id":9,"name":"Brand Voice","tier":"content","desc":"Konsistente Markensprache und Tone of Voice?","related":[5,8,10,11],"levels":["Keine Guidelines","Vage Richtlinien","Styleguide vorhanden","Team geschult","KI-gestuetzte Konsistenz-Pruefung"],"theses":["Wir haben eine ungefaehre Vorstellung, wie unsere Marke klingen soll.","Es gibt schriftliche Leitlinien fuer unseren Kommunikationsstil.","Neue Teammitglieder koennen die Brand Voice anhand des Guides anwenden.","Die Brand Voice ist ueber alle Kanaele hinweg konsistent.","KI-Tools pruefen automatisch, ob neue Texte zur Brand Voice passen."],"recommendations":["Beschreibe in 3 Adjektiven, wie deine Marke klingen soll.","Erstelle einen einfachen Styleguide mit Dos und Don'ts.","Schulze dein Team auf die Brand Voice mit konkreten Beispielen.","Pruefe regelmaessig die Konsistenz ueber alle Kanaele.","Top! Setze KI-basierte Tone-of-Voice-Checker ein."],"aiAgent":"Ein Brand-Voice-Agent kann als Qualitaets-Gate jeden Text vor Veroeffentlichung auf Konsistenz mit deinem Styleguide pruefen und Verbesserungen vorschlagen.","aiPrompt":"Pruefe diesen Text gegen unseren Styleguide und markiere Stellen, die nicht zur Brand Voice passen."},{"id":10,"name":"Visuals","tier":"content","desc":"Visuelles Erscheinungsbild und Design-System?","related":[6,9,11,16],"levels":["Inkonsistent","Logo + Farben definiert","Design-System vorhanden","Multi-Format Templates","KI-gestuetzte Asset-Pipeline"],"theses":["Wir haben ein Logo und definierte Markenfarben.","Es gibt Vorlagen fuer die gaengigsten visuellen Formate.","Unser visuelles Erscheinungsbild ist ueber Kanaele hinweg wiedererkennbar.","Neue visuelle Assets koennen schnell aus Templates erstellt werden.","KI-Tools generieren und adaptieren visuelle Assets automatisch."],"recommendations":["Definiere Logo, Farben und Schriften in einem einfachen Brand-Kit.","Erstelle Canva/Figma-Templates fuer Social Media und Praesentationen.","Pruefe: Sieht LinkedIn gleich aus wie Website gleich wie Newsletter?","Baue einen Workflow, bei dem Assets in unter 1 Stunde entstehen.","Stark! Nutze KI fuer automatische Asset-Generierung und -Anpassung."],"aiAgent":"Ein Visual-Production-Agent kann aus deinem Brand-Kit automatisch Social-Media-Grafiken, Ad Creatives und Praesentationsfolien in allen Formaten generieren.","aiPrompt":"Erstelle aus diesem Text 5 Social-Media-Grafiken im Format 1080x1080 mit unserer Markenfarbe [Hex]."},{"id":11,"name":"Social Media","tier":"channel","desc":"Strategische Social-Media-Praesenz?","related":[1,2,6,8,9,10,13,14,22],"levels":["Kaum aktiv","Unregelmaessig","Regelmaessig + geplant","Datengesteuert","KI-optimierte Omnipresenz"],"theses":["Wir sind auf mindestens einer relevanten Plattform aktiv.","Wir posten regelmaessig nach einem einfachen Plan.","Wir wissen, welche Inhalte bei unserer Zielgruppe am besten ankommen.","Social Media generiert nachweislich Leads oder Kundenanfragen.","KI-Agenten planen, erstellen und optimieren unsere Social-Praesenz."],"recommendations":["Waehle 1-2 Plattformen, wo deine Zielgruppe ist und starte dort.","Erstelle einen einfachen Posting-Rhythmus (z.B. 3x/Woche).","Analysiere deine Top-5-Posts: Was haben sie gemeinsam?","Tracke die Verbindung zwischen Social Media und Geschaeftsergebnissen.","Exzellent! Automatisiere mit KI-Agenten die gesamte Social-Kette."],"aiAgent":"Ein Social-Media-Agent kann Posts planen, erstellen und die besten Posting-Zeiten ermitteln. Er analysiert Engagement-Daten und schlaegt Content-Optimierungen vor.","aiPrompt":"Erstelle aus diesem Blogartikel 5 LinkedIn-Posts und 3 Twitter-Threads mit unterschiedlichen Hooks."},{"id":12,"name":"E-Mail Marketing","tier":"channel","desc":"E-Mail-Automatisierung und Newsletter?","related":[2,6,8,17,18],"levels":["Kein E-Mail-Marketing","Einfacher Newsletter","Segmentiert","Automatisierte Flows","KI-personalisiert, predictive"],"theses":["Wir sammeln E-Mail-Adressen und haben eine Kontaktliste.","Es gibt einen regelmaessigen Newsletter oder E-Mail-Versand.","Unsere E-Mail-Liste ist segmentiert - nicht alle bekommen das Gleiche.","Es gibt automatisierte E-Mail-Sequenzen (Welcome, Onboarding etc.).","KI personalisiert Inhalte, Betreffzeilen und Versandzeiten individuell."],"recommendations":["Starte eine E-Mail-Liste mit einem einfachen Anmeldeformular.","Versende einen monatlichen Newsletter mit wertvollem Content.","Teile die Liste in mindestens 3 Segmente und passe Inhalte an.","Baue automatisierte Flows fuer die wichtigsten Anlaesse.","Top! Nutze KI fuer Hyper-Personalisierung und Predictive Sending."],"aiAgent":"Ein E-Mail-Agent kann Betreffzeilen optimieren, Versandzeitpunkte pro Empfaenger berechnen und personalisierte Inhalte fuer jedes Segment generieren.","aiPrompt":"Schreibe 5 Betreffzeilen-Varianten fuer unseren Newsletter zum Thema [X]. Optimiere auf Oeffnungsrate."},{"id":13,"name":"Paid Ads","tier":"channel","desc":"Bezahlte Werbung (Google, Meta, LinkedIn)?","related":[1,4,11,19,22],"levels":["Keine Ads","Gelegentlich","Laufende Kampagnen","ROAS-optimiert","KI-gestuetztes Bidding + Creative"],"theses":["Wir haben schon einmal bezahlte Werbung geschaltet.","Wir schalten regelmaessig Ads auf mindestens einer Plattform.","Wir kennen unsere Kundenakquisitionskosten (CAC) pro Kanal.","Kampagnen werden woechentlich ausgewertet und optimiert.","KI steuert Bidding, Targeting und Creative-Varianten automatisch."],"recommendations":["Starte einen kleinen Test-Ad mit 50 EUR Budget auf der wichtigsten Plattform.","Definiere klare Kampagnenziele und tracke Conversions.","Berechne deinen CAC: Was kostet ein Neukunde pro Kanal?","Optimiere woechentlich und skaliere Gewinner-Ads.","Stark! Nutze KI fuer automatisiertes Bidding und Creative-Testing."],"aiAgent":"Ein Ads-Agent kann Zielgruppen-Segmente vorschlagen, Ad Copy in Varianten generieren und Budget-Allokation basierend auf Performance-Daten optimieren.","aiPrompt":"Erstelle 10 Ad-Copy-Varianten fuer [Produkt] auf LinkedIn. Zielgruppe: [ICP]. Fokus auf [Pain Point]."},{"id":14,"name":"Influencer & Kooperationen","tier":"channel","desc":"Influencer-Kooperationen und Partnerschaften?","related":[9,11,15,24],"levels":["Nichts","Einzelne Kontakte","Aktive Kooperationen","Strategisches Programm","KI-identifizierte Micro-Influencer"],"theses":["Wir kennen relevante Meinungsfuehrer in unserem Markt.","Wir haben schon mit externen Partnern oder Influencern zusammengearbeitet.","Es gibt eine aktive Liste von Kooperationspartnern mit Ansprechpartnern.","Die Auswahl erfolgt strategisch nach Reichweite, Relevanz und Werten.","KI-Tools identifizieren passende Micro-Influencer automatisch."],"recommendations":["Identifiziere 10 Meinungsfuehrer, die deine Zielgruppe erreichen.","Starte mit einer einfachen Kooperation (Gastbeitrag, Interview).","Baue eine Partnerliste mit Kontakten und Kooperationshistorie.","Entwickle ein Influencer-Programm mit klaren KPIs.","Exzellent! Nutze KI fuer Influencer-Discovery und ROI-Tracking."],"aiAgent":"Ein Influencer-Discovery-Agent kann Social-Media-Daten analysieren und Micro-Influencer identifizieren, die deine Zielgruppe authentisch erreichen.","aiPrompt":"Finde 20 Micro-Influencer im Bereich [Branche] mit 5.000-50.000 Followern und hohem Engagement."},{"id":15,"name":"PR & Reputation","tier":"channel","desc":"Pressearbeit und Online-Reputation?","related":[4,5,9,14],"levels":["Keine PR","Reaktiv bei Anfragen","Aktive Pressearbeit","Thought Leadership","KI-gestuetztes Reputation Monitoring"],"theses":["Wir wissen, was online ueber uns gesagt wird.","Wir reagieren auf Medienanfragen oder Bewertungen.","Wir betreiben aktive Pressearbeit und pitchen Themen an Medien.","Unsere Fuehrungskraefte werden als Experten wahrgenommen.","KI-Tools ueberwachen unsere Reputation und alertieren bei Aenderungen."],"recommendations":["Google dein Unternehmen und schau, was du findest.","Antworte auf alle Online-Bewertungen - positiv wie negativ.","Erstelle eine Pressemitteilung oder einen Gastartikel.","Positioniere eine Person als Thought Leader mit regelmaessigem Content.","Top! Automatisiere Reputation-Monitoring und Media-Scanning mit KI."],"aiAgent":"Ein Reputation-Agent kann Erwaehungen deiner Marke in News, Social Media und Bewertungsportalen ueberwachen und dir Echtzeit-Alerts bei Aenderungen schicken.","aiPrompt":"Erstelle einen woechentlichen Reputation-Report fuer [Firmenname] mit Sentiment-Analyse."},{"id":16,"name":"Landing Pages","tier":"conversion","desc":"Conversion-optimierte Landing Pages?","related":[7,8,10,21],"levels":["Keine dedizierten LPs","Einfache Seiten","A/B-getestet","Personalisiert","KI-generierte dynamische LPs"],"theses":["Fuer wichtige Angebote gibt es eigene Landing Pages.","Unsere Landing Pages haben einen klaren Call-to-Action.","Wir kennen die Conversion Rate unserer wichtigsten Landing Pages.","Landing Pages werden per A/B-Test regelmaessig optimiert.","KI generiert und personalisiert Landing Pages dynamisch pro Besucher."],"recommendations":["Erstelle eine dedizierte Landing Page fuer dein wichtigstes Angebot.","Pruefe: Gibt es genau EINEN klaren CTA pro Seite?","Installiere Conversion-Tracking und messe die Rate.","Starte monatliche A/B-Tests fuer Headlines und CTAs.","Stark! Setze KI fuer dynamische, personalisierte Landing Pages ein."],"aiAgent":"Ein Landing-Page-Agent kann aus deinem Angebot, ICP und bewaeherter Copy automatisch hochkonvertierende Seiten generieren und A/B-Varianten vorschlagen.","aiPrompt":"Erstelle eine Landing Page fuer [Produkt] mit Headline, 3 Benefits, Social Proof und CTA. Zielgruppe: [Persona]."},{"id":17,"name":"Lead Nurturing","tier":"conversion","desc":"Systematische Lead-Pflege bis zum Kauf?","related":[1,2,12,18],"levels":["Kein Nurturing","Manuelles Follow-up","Basis-Automation","Multi-Touch Journeys","KI-predictive Nurturing"],"theses":["Kein Lead geht bei uns komplett verloren.","Es gibt einen definierten Follow-up-Prozess nach dem Erstkontakt.","Automatisierte E-Mails begleiten Leads durch den Kaufprozess.","Wir wissen, wie viele Touchpoints bis zum Kauf noetig sind.","KI erkennt kaufbereite Leads und priorisiert sie automatisch."],"recommendations":["Definiere einen einfachen Follow-up-Prozess: Wer meldet sich wann?","Richte eine Welcome-E-Mail-Serie mit 3-5 Mails ein.","Baue automatisierte Nurturing-Flows fuer verschiedene Einstiegspunkte.","Analysiere die durchschnittliche Lead-to-Customer-Journey.","Exzellent! Nutze KI-Scoring um kaufbereite Leads zu priorisieren."],"aiAgent":"Ein Nurturing-Agent kann den optimalen Zeitpunkt und Inhalt fuer jeden Touchpoint berechnen und personalisierte Follow-up-Sequenzen orchestrieren.","aiPrompt":"Erstelle eine 7-teilige Nurturing-Sequenz fuer Leads, die [Lead Magnet] heruntergeladen haben."},{"id":18,"name":"CRM","tier":"conversion","desc":"Customer-Relationship-Management und Datenhygiene?","related":[1,12,17,23],"levels":["Excel/kein CRM","CRM vorhanden","Aktiv genutzt","Integriert + automatisiert","KI-Insights + predictive Analytics"],"theses":["Kundeninteraktionen werden irgendwo zentral festgehalten.","Wir nutzen ein CRM-System, in dem das Team Kontakte pflegt.","Die Kundendaten sind aktuell und frei von Dubletten.","Das CRM ist mit E-Mail, Website und anderen Tools integriert.","KI liefert uns Echtzeit-Einblicke und Prognosen aus den CRM-Daten."],"recommendations":["Waehle ein einfaches CRM (HubSpot Free, Pipedrive) und starte.","Verpflichte das Team, jeden Kundenkontakt im CRM zu dokumentieren.","Mache einen Fruehjahrputz: Bereinige Dubletten und aktualisiere Daten.","Integriere CRM mit E-Mail-Marketing und Website-Tracking.","Top! Nutze KI fuer Deal-Scoring und Umsatzprognosen."],"aiAgent":"Ein CRM-Intelligence-Agent kann Kundendaten bereinigen, Deal-Wahrscheinlichkeiten berechnen und dem Vertrieb konkrete Next-Best-Actions vorschlagen.","aiPrompt":"Analysiere unsere Pipeline und identifiziere die 10 Deals mit der hoechsten Abschlusswahrscheinlichkeit."},{"id":19,"name":"Retargeting","tier":"conversion","desc":"Retargeting und Remarketing-Strategien?","related":[13,18,22],"levels":["Kein Retargeting","Basis-Pixel","Segment-basiert","Cross-Channel-Sequenzen","KI-optimierte Audiences"],"theses":["Auf unserer Website ist ein Tracking-Pixel installiert.","Website-Besucher sehen danach gezielte Anzeigen von uns.","Retargeting unterscheidet zwischen verschiedenen Besuchersegmenten.","Es gibt Retargeting-Sequenzen ueber mehrere Kanaele hinweg.","KI optimiert Retargeting-Audiences und Creatives automatisch."],"recommendations":["Installiere den Meta-Pixel und Google-Tag auf deiner Website.","Erstelle eine erste Retargeting-Kampagne fuer Website-Besucher.","Segmentiere: Wer war auf der Preisseite vs. wer hat nur den Blog gelesen?","Baue kanaluebergreifende Retargeting-Sequenzen.","Stark! Nutze KI fuer Lookalike Audiences und dynamische Creatives."],"aiAgent":"Ein Retargeting-Agent kann Besucherverhalten analysieren, die wertvollsten Retargeting-Segmente identifizieren und passgenaue Ad-Sequenzen erstellen.","aiPrompt":"Definiere 5 Retargeting-Segmente basierend auf unserem Website-Verhalten und schlage je eine Ad-Strategie vor."},{"id":20,"name":"Pricing","tier":"conversion","desc":"Strategische Preisgestaltung und Packaging?","related":[1,3,22],"levels":["Bauchgefuehl","Kosten-basiert","Wettbewerbs-basiert","Value-Based Pricing","Dynamische KI-Preisoptimierung"],"theses":["Wir haben einen bewussten Grund fuer unsere Preisgestaltung.","Unsere Preise orientieren sich an Kosten PLUS Markt-Vergleich.","Es gibt verschiedene Pakete fuer verschiedene Kundensegmente.","Preise basieren auf dem wahrgenommenen Kundenwert.","KI-Tools helfen bei Preisoptimierung und dynamischem Pricing."],"recommendations":["Dokumentiere: Warum kostet dein Produkt, was es kostet?","Vergleiche deine Preise mit 5 Wettbewerbern.","Erstelle 2-3 Preispakete fuer verschiedene Beduerfnisse.","Teste Preisaenderungen und messe die Auswirkung auf Conversion.","Exzellent! Implementiere KI-basierte Preisoptimierung."],"aiAgent":"Ein Pricing-Agent kann Wettbewerbspreise tracken, Preissensitivitaet der Zielgruppe modellieren und optimale Preispunkte vorschlagen.","aiPrompt":"Analysiere unsere Preisstruktur im Vergleich zu [3 Wettbewerber] und schlage optimierte Pakete vor."},{"id":21,"name":"A/B-Tests","tier":"optimization","desc":"Systematisches Testing und Experimentation?","related":[11,12,13,16,22],"levels":["Keine Tests","Gelegentlich","Regelmaessig","Test-Framework + Backlog","KI-gesteuertes Multivariate Testing"],"theses":["Wir haben schon einmal zwei Varianten gegeneinander getestet.","Wir testen regelmaessig verschiedene Versionen von Marketing-Elementen.","Es gibt eine Liste mit Test-Ideen, die priorisiert abgearbeitet wird.","Das Team versteht statistische Signifikanz und wann ein Test endet.","KI-Tools steuern multivariate Tests und leiten Erkenntnisse automatisch ab."],"recommendations":["Starte mit einem einfachen A/B-Test: Zwei E-Mail-Betreffzeilen.","Mache A/B-Testing zu einer monatlichen Gewohnheit.","Erstelle einen Test-Backlog mit Hypothesen und erwarteter Wirkung.","Schulze dein Team zu Testdesign und statistischer Auswertung.","Top! Setze KI fuer automatisiertes Multivariate Testing ein."],"aiAgent":"Ein Testing-Agent kann Testhypothesen generieren, Stichprobengroessen berechnen, Ergebnisse analysieren und konkrete Handlungsempfehlungen ableiten.","aiPrompt":"Generiere 10 A/B-Test-Hypothesen fuer unsere Landing Page basierend auf Best Practices und unserer Conversion Rate."},{"id":22,"name":"Analytics","tier":"optimization","desc":"Datenerfassung, Dashboards und Reporting?","related":[11,13,21,23,25],"levels":["Kein Tracking","Google Analytics Basis","Custom Dashboards","Multi-Touch Attribution","KI-predictive Analytics"],"theses":["Wir tracken Website-Traffic und wissen, woher Besucher kommen.","Es gibt ein Dashboard mit den wichtigsten Marketing-KPIs.","Wir koennen sagen, welcher Kanal die meisten Conversions bringt.","Wir verstehen Multi-Touch-Attribution und die volle Customer Journey.","KI erkennt Anomalien in den Daten und sagt Trends voraus."],"recommendations":["Installiere Google Analytics und richte Conversion-Tracking ein.","Erstelle ein einfaches Dashboard mit 5-7 Kern-KPIs.","Tagge alle Kampagnen mit UTM-Parametern fuer saubere Attribution.","Implementiere Multi-Touch-Attribution fuer die volle Journey.","Stark! Nutze KI fuer Anomalie-Erkennung und Predictive Analytics."],"aiAgent":"Ein Analytics-Agent kann Daten aus allen Quellen zusammenfuehren, Anomalien erkennen, Trends vorhersagen und dir woechentlich die wichtigsten Insights liefern.","aiPrompt":"Analysiere unsere Marketing-Daten der letzten 3 Monate: Welche Kanaele performen ueber-/unterdurchschnittlich?"},{"id":23,"name":"Customer Journey","tier":"optimization","desc":"Journey Mapping und Touchpoint-Optimierung?","related":[2,18,22],"levels":["Unbekannt","Grob verstanden","Dokumentiert","Datenbasiert optimiert","KI-orchestrierte Echtzeit-Journeys"],"theses":["Wir haben eine grobe Vorstellung, wie Kunden zu uns finden.","Die typischen Wege vom Erstkontakt bis zum Kauf sind dokumentiert.","Wir wissen, an welchen Punkten Kunden abspringen.","Touchpoints werden datenbasiert optimiert um Abbrueche zu reduzieren.","KI orchestriert individuelle Journeys in Echtzeit pro Kunde."],"recommendations":["Zeichne den Weg deiner letzten 5 Kunden vom Erstkontakt bis zum Kauf auf.","Erstelle eine einfache Customer Journey Map mit den Hauptphasen.","Identifiziere die 3 groessten Drop-off-Punkte und arbeite daran.","Nutze Daten um Touchpoints zu optimieren und Conversion zu steigern.","Exzellent! Implementiere KI-gesteuerte Echtzeit-Journey-Orchestrierung."],"aiAgent":"Ein Journey-Agent kann alle Touchpoint-Daten analysieren, Engstellen identifizieren und fuer jeden Kunden den optimalen naechsten Schritt vorschlagen.","aiPrompt":"Analysiere unsere Funnel-Daten und identifiziere die 3 Touchpoints mit dem groessten Conversion-Drop."},{"id":24,"name":"Reviews & UGC","tier":"optimization","desc":"Bewertungs-Management und nutzergenerierte Inhalte?","related":[14,18],"levels":["Ignoriert","Passiv beobachtet","Aktiv gemanaged","Strategie + Incentives","KI-analysiert + amplified"],"theses":["Wir wissen, wo Kunden uns online bewerten.","Wir lesen und reagieren auf Kundenbewertungen.","Wir bitten zufriedene Kunden aktiv um Bewertungen.","Es gibt ein System mit Anreizen fuer Bewertungen und UGC.","KI analysiert Review-Trends und verstaerkt die besten Kundenstimmen."],"recommendations":["Pruefe alle relevanten Bewertungsportale: Was sagen Kunden ueber dich?","Antworte auf JEDE Bewertung - auch auf positive.","Baue eine E-Mail-Sequenz, die zufriedene Kunden um Bewertungen bittet.","Entwickle ein UGC-Programm mit Incentives und Community-Building.","Top! Nutze KI fuer Sentiment-Analyse und automatische UGC-Kuration."],"aiAgent":"Ein Review-Agent kann Bewertungen ueber alle Plattformen aggregieren, Sentiment-Trends analysieren und die besten Testimonials fuer dein Marketing identifizieren.","aiPrompt":"Analysiere unsere letzten 100 Kundenbewertungen: Was sind die Top-3 Lob-Punkte und Top-3 Kritikpunkte?"},{"id":25,"name":"Iteration","tier":"optimization","desc":"Kontinuierlicher Verbesserungsprozess?","related":[21,22,23,24],"levels":["Keine Iteration","Ad-hoc Anpassungen","Quartals-Reviews","Datengetriebene Optimierung","KI-gestuetzte kontinuierliche Optimierung"],"theses":["Wir passen unsere Marketing-Aktivitaeten an, wenn etwas nicht funktioniert.","Es gibt einen festen Rhythmus, in dem wir Ergebnisse auswerten.","Erkenntnisse aus Kampagnen werden dokumentiert und fliessen in die Planung ein.","Jede Marketing-Aktivitaet wird als Experiment mit Messung betrachtet.","KI identifiziert Optimierungspotenziale und schlaegt Massnahmen automatisch vor."],"recommendations":["Halte nach jeder Kampagne fest: Was hat funktioniert, was nicht?","Etabliere monatliche Marketing-Reviews mit dem Team.","Fuehre ein Learnings-Log und nutze es bei der naechsten Planung.","Betrachte jede Massnahme als Experiment mit Hypothese und Messung.","Exzellent! Lass KI-Agenten kontinuierlich Optimierungen vorschlagen."],"aiAgent":"Ein Iterations-Agent kann alle Marketing-Daten aggregieren, Patterns erkennen und jede Woche konkrete Optimierungsvorschlaege mit geschaetztem Impact liefern.","aiPrompt":"Vergleiche unsere Marketing-KPIs der letzten 4 Wochen und schlage 5 konkrete Optimierungen mit geschaetztem Impact vor."}],"needs":[{"id":"leads","name":"Mehr Leads","color":"#22C55E","icon":"🎯","question":"Woher kommen neue Kunden?","desc":"Mehr qualifizierte Anfragen und Interessenten generieren","primary":[1,2,7,8,11,12,13,16,17,19,23],"secondary":[3,5,6,10],"context":{"1":"Ohne klares ICP generierst du Leads, die nie kaufen werden.","2":"Personas helfen dir, die richtigen Menschen anzusprechen.","3":"Markttrends zeigen dir, wo neue Lead-Quellen entstehen.","5":"Klare Positionierung macht dich fuer die richtigen Leads sichtbar.","6":"Ein Content-Plan sorgt fuer kontinuierlichen Lead-Zufluss.","7":"SEO bringt die nachhaltigsten Leads — kostenlos.","8":"Gute Texte verwandeln Besucher in Leads.","10":"Professionelle Visuals erhoehen die Glaubwuerdigkeit.","11":"Social Media ist dein Schaufenster fuer neue Kontakte.","12":"E-Mail-Marketing pflegt und qualifiziert Leads automatisch.","13":"Paid Ads bringen sofort messbare Lead-Ergebnisse.","16":"Ohne optimierte Landing Pages verpufft jeder Klick.","17":"Nurturing macht aus kalten Kontakten warme Leads.","19":"Retargeting holt verlorene Besucher zurueck.","23":"Die Customer Journey zeigt, wo Leads verloren gehen."},"impactStatements":{"1":{"low":"Du sprichst die falschen Leute an.","high":"Du weisst genau, wen du suchst."},"2":{"low":"Dein Marketing ist ein Schuss ins Blaue.","high":"Du kennst deine Zielgruppe in- und auswendig."},"7":{"low":"Deine Wettbewerber bekommen Leads im Schlaf — du nicht.","high":"Organischer Traffic liefert zuverlaessig."},"8":{"low":"Deine Texte ueberzeugen niemanden zum Handeln.","high":"Deine Copy verwandelt Leser in Leads."},"11":{"low":"Du bist auf Social Media unsichtbar.","high":"Social Media ist eine zuverlaessige Lead-Quelle."},"12":{"low":"Leads versickern ohne Follow-up.","high":"E-Mail-Automation pflegt jeden Lead automatisch."},"13":{"low":"Budget verbrennt ohne praezises Targeting.","high":"Ads liefern kalkulierbar qualifizierte Leads."},"16":{"low":"Traffic laeuft auf Sackgassen — 50-80% verbrennt.","high":"Optimierte LPs konvertieren zuverlaessig."},"17":{"low":"Leads werden kalt, weil niemand nachfasst.","high":"Jeder Lead wird systematisch zum Kauf gefuehrt."},"19":{"low":"Verlorene Besucher kommen nie wieder.","high":"Retargeting holt verlorene Chancen zurueck."},"23":{"low":"Du weisst nicht, wo Leads verloren gehen.","high":"Du kennst jeden Engpass in deiner Pipeline."}},"actionPlan":{"month1":"Infrastruktur: Landing Page + CRM + Tracking aufsetzen","month2":"Content: SEO-Grundlagen + Content-Plan + Blog starten","month3":"Skalierung: Paid Ads + Retargeting + Lead-Magnets"},"cta":{"title":"Du verlierst jeden Tag potenzielle Kunden","text":"KI-Agenten koennen automatisch qualifizierte Leads generieren — rund um die Uhr.","btn":"Zeig mir, wie ich mehr Leads bekomme"}},{"id":"performance","name":"Mehr Performance","color":"#3B82F6","icon":"📈","question":"Wie hole ich mehr aus meinem Budget?","desc":"Marketing-ROI steigern und Budget effizient einsetzen","primary":[6,7,12,13,16,18,19,21,22,23,25],"secondary":[1,2,3,4,8,10,11,20],"context":{"1":"Ohne ICP streust du Budget an die falschen Empfaenger.","2":"Personas verbessern das Targeting und senken Kosten.","3":"Marktanalyse verhindert Fehlinvestitionen.","4":"Wettbewerbswissen hilft Budget-Allokation.","6":"Ein Content-Plan verhindert teure Ad-hoc-Aktionen.","7":"SEO liefert den guenstigsten Traffic langfristig.","8":"Bessere Texte erhoehen Conversion bei gleichem Budget.","10":"Professionelle Visuals senken die Absprungrate.","11":"Social Media kann organische Reichweite ohne Budget liefern.","12":"E-Mail ist der Kanal mit dem hoechsten ROI.","13":"Paid Ads muessen datengetrieben optimiert werden.","16":"Landing Pages sind der Hebel fuer deine Conversion Rate.","18":"CRM-Daten zeigen, wo Budget am besten wirkt.","19":"Retargeting hat die hoechsten Conversion Rates.","20":"Pricing-Optimierung ist der schnellste Umsatzhebel.","21":"A/B-Tests eliminieren Bauchgefuehl-Entscheidungen.","22":"Analytics zeigt, welche Kanaele wirklich performen.","23":"Journey-Optimierung reduziert Streuverluste.","25":"Iteration macht dein Marketing jeden Monat besser."},"impactStatements":{"6":{"low":"Ohne Plan verbrennst du Budget fuer Content, der niemanden erreicht.","high":"Dein Content-Plan maximiert den Output pro investierter Stunde."},"7":{"low":"Du zahlst fuer Traffic, den SEO gratis liefern koennte.","high":"SEO liefert kostenlosen, qualifizierten Traffic."},"12":{"low":"Der ROI-staerkste Kanal liegt brach — jede Mail koennte Umsatz bringen.","high":"E-Mail liefert den hoechsten ROI aller Marketing-Kanaele."},"13":{"low":"Dein Ad-Budget verpufft ohne messbare Ergebnisse.","high":"Jeder investierte Euro bringt kalkulierbaren Return."},"16":{"low":"Deine Landing Pages verschwenden den teuer eingekauften Traffic.","high":"Optimierte LPs holen das Maximum aus jedem Klick."},"18":{"low":"Ohne CRM-Daten weisst du nicht, wo dein Budget am besten wirkt.","high":"CRM-Insights steuern dein Budget datenbasiert."},"19":{"low":"Retargeting koennte deine guenstigsten Conversions liefern — tut es aber nicht.","high":"Retargeting bringt die hoechsten Conversion Rates bei niedrigsten Kosten."},"21":{"low":"Du optimierst nach Bauchgefuehl statt nach Daten.","high":"Systematische Tests steigern deinen ROI kontinuierlich."},"22":{"low":"Du weisst nicht, welcher Kanal wirklich performt.","high":"Du investierst nur in Kanaele mit nachweisbarem ROI."},"23":{"low":"Streuverluste in der Journey kosten dich Budget ohne Ergebnis.","high":"Die optimierte Journey reduziert Streuverluste auf ein Minimum."},"25":{"low":"Gleiche Fehler werden immer wieder wiederholt.","high":"Jede Kampagne baut auf den Learnings der vorherigen auf."}},"actionPlan":{"month1":"Messen: Analytics + Attribution + KPI-Dashboard aufsetzen","month2":"Optimieren: A/B-Tests starten + Budget umschichten","month3":"Skalieren: Top-Kanaele ausbauen + Underperformer kappen"},"cta":{"title":"Dein Marketing-Budget arbeitet nicht hart genug","text":"KI-Agenten optimieren dein Budget automatisch — mehr Ergebnis bei gleichen Kosten.","btn":"Marketing-ROI verdoppeln"}},{"id":"conversions","name":"Bessere Abschluesse","color":"#F97316","icon":"🤝","question":"Warum kaufen Besucher nicht?","desc":"Conversion Rate optimieren und mehr Besucher zu Kunden machen","primary":[1,2,5,8,12,16,17,18,19,20,21,23,24],"secondary":[3,4,6,9,10,22,25],"context":{"1":"Ohne ICP ziehst du die falschen Besucher an.","2":"Personas verraten, was Besucher zum Kauf bewegt.","3":"Marktkenntnis hilft, das richtige Angebot zu machen.","4":"Wettbewerbsanalyse zeigt, warum Kunden woanders kaufen.","5":"Klare Positionierung beantwortet die Frage: Warum du?","6":"Content baut das Vertrauen auf, das zum Kauf fuehrt.","8":"Ueberzeugende Texte sind der Schluessel zur Conversion.","9":"Konsistente Brand Voice schafft Vertrauen.","10":"Professionelle Visuals erhoehen die Kaufbereitschaft.","12":"E-Mail-Nurturing fuehrt Leads zum Abschluss.","16":"Landing Pages sind dein digitaler Verkaeufer.","17":"Nurturing warmt kalte Leads systematisch auf.","18":"CRM zeigt, wo im Funnel Leads stecken bleiben.","19":"Retargeting gibt Unentschlossenen einen letzten Anstoss.","20":"Das richtige Pricing entscheidet ueber Kauf oder Absprung.","21":"A/B-Tests finden die Conversion-Killer.","22":"Analytics zeigt genau, wo Besucher abspringen.","23":"Journey-Mapping deckt Conversion-Blockaden auf.","24":"Reviews und Social Proof ueberzeugen Unentschlossene.","25":"Iteration verbessert Conversions kontinuierlich."},"impactStatements":{"1":{"low":"Du ziehst die falschen Besucher an — kein Wunder, dass sie nicht kaufen.","high":"Dein ICP stellt sicher, dass nur kaufbereite Besucher kommen."},"2":{"low":"Du verstehst nicht, was deine Besucher zum Kauf bewegt.","high":"Du kennst die Kaufmotive deiner Zielgruppe genau."},"5":{"low":"Besucher verstehen nicht, warum sie bei dir kaufen sollen.","high":"Deine Positionierung macht den Kauf zur logischen Entscheidung."},"8":{"low":"Deine Texte informieren, aber ueberzeugen nicht zum Kauf.","high":"Deine Copy fuehrt Leser Schritt fuer Schritt zum Abschluss."},"12":{"low":"Warme Leads bekommen kein Follow-up und kaufen woanders.","high":"E-Mail-Sequences fuehren Leads systematisch zum Kauf."},"16":{"low":"Deine Landing Pages sind Informationsseiten, keine Verkaufsseiten.","high":"Deine LPs sind optimierte Verkaufsmaschinen."},"17":{"low":"Leads, die nicht sofort kaufen, gehen verloren.","high":"Jeder Lead wird automatisch zum Kauf begleitet."},"18":{"low":"Du weisst nicht, wo Leads im Funnel stecken bleiben.","high":"Dein CRM zeigt dir genau, wo Conversions blockiert sind."},"19":{"low":"Unentschlossene Besucher verschwinden fuer immer.","high":"Retargeting gibt Unentschlossenen den letzten Anstoss zum Kauf."},"20":{"low":"Dein Pricing schreckt ab oder laesst Geld auf dem Tisch.","high":"Dein Pricing ist auf maximale Conversion optimiert."},"21":{"low":"Du raetst, was funktioniert — statt es zu testen.","high":"A/B-Tests finden und eliminieren Conversion-Killer systematisch."},"23":{"low":"Du siehst nicht, wo im Kaufprozess Besucher abspringen.","high":"Die optimierte Journey fuehrt Besucher nahtlos zum Abschluss."},"24":{"low":"Keine Social Proof — Besucher vertrauen dir nicht.","high":"Bewertungen und Testimonials ueberzeugen fuer dich."}},"actionPlan":{"month1":"Analyse: Funnel-Engpaesse identifizieren + Tracking aufsetzen","month2":"Optimieren: Landing Pages + CTAs + Texte A/B-testen","month3":"Systematisieren: Nurturing-Flows + Retargeting + Review-System"},"cta":{"title":"Du hast Traffic — aber zu wenig Kunden","text":"KI-Agenten optimieren deine Conversion-Punkte automatisch — mehr Kunden bei gleichem Traffic.","btn":"Warum meine Besucher nicht kaufen"}},{"id":"revenue","name":"Mehr Umsatz","color":"#EF4444","icon":"💰","question":"Wie steigere ich den Umsatz?","desc":"Umsatz steigern durch besseres Marketing und Vertrieb","primary":[4,5,8,12,13,17,18,20,23,24],"secondary":[1,2,3,6,7,10,11,16,22,25],"context":{"1":"ICP-Klarheit sorgt fuer hoeherwertige Deals.","2":"Personas zeigen Upselling-Potenzial.","3":"Markttrends eroeffnen neue Umsatzquellen.","4":"Wettbewerbsanalyse sichert deine Preismacht.","5":"Premium-Positionierung ermoeglicht hoehere Preise.","6":"Content-Plan generiert konsistenten Nachschub.","7":"SEO bringt kaufbereiten Traffic ohne Werbekosten.","8":"Ueberzeugende Texte erhoehen den durchschnittlichen Warenkorb.","10":"Professionelle Visuals rechtfertigen Premium-Preise.","11":"Social Media baut die Reichweite fuer neue Umsaetze.","12":"E-Mail-Marketing ist der umsatzstaerkste Kanal.","13":"Paid Ads skalieren den Umsatz planbar.","16":"Optimierte LPs maximieren den Umsatz pro Besucher.","17":"Nurturing erhoeht den Customer Lifetime Value.","18":"CRM deckt Upselling-Chancen bei Bestandskunden auf.","20":"Pricing ist der schnellste Hebel fuer mehr Umsatz.","22":"Analytics identifiziert die profitabelsten Segmente.","23":"Journey-Optimierung maximiert den Umsatz pro Kunde.","24":"Positive Reviews erzeugen Empfehlungs-Umsatz.","25":"Iteration steigert den Umsatz kontinuierlich."},"impactStatements":{"4":{"low":"Ohne Wettbewerbswissen verlierst du Deals an die Konkurrenz.","high":"Du kennst die Schwaechen der Wettbewerber und nutzt sie."},"5":{"low":"Du konkurrierst ueber den Preis statt ueber den Wert.","high":"Deine Positionierung rechtfertigt Premium-Preise."},"8":{"low":"Deine Texte verkaufen nicht — sie informieren nur.","high":"Ueberzeugende Copy erhoeht den durchschnittlichen Warenkorbwert."},"12":{"low":"Du laesst den umsatzstaerksten Kanal brachliegen.","high":"E-Mail generiert planbaren, wiederkehrenden Umsatz."},"13":{"low":"Du wartest auf Kunden statt sie aktiv zu gewinnen.","high":"Paid Ads skalieren deinen Umsatz planbar."},"17":{"low":"Kunden kaufen einmal — und dann nie wieder.","high":"Nurturing erhoeht den Customer Lifetime Value systematisch."},"18":{"low":"Du kennst deine profitabelsten Kunden nicht.","high":"CRM-Daten zeigen Upselling-Chancen in Echtzeit."},"20":{"low":"10% mehr Preis = 50%+ mehr Profit. Du laesst Geld liegen.","high":"Dein Pricing ist auf maximalen Umsatz optimiert."},"23":{"low":"Du weisst nicht, wo im Kaufprozess Umsatz verloren geht.","high":"Die optimierte Journey maximiert den Umsatz pro Kunde."},"24":{"low":"Ohne Bewertungen fehlt der Empfehlungs-Effekt.","high":"Kunden werben neue Kunden — kostenlos."}},"actionPlan":{"month1":"Fundament: CRM aufsetzen + Pricing-Analyse + Bestandskunden-Check","month2":"Wachstum: E-Mail-Flows + Paid Ads + Upselling-Strategie","month3":"Skalierung: Review-System + Empfehlungsprogramm + Pricing-Tests"},"cta":{"title":"Dein Marketing generiert zu wenig Umsatz","text":"KI-Agenten finden versteckte Umsatzpotenziale und aktivieren sie automatisch.","btn":"Mehr Umsatz mit gleichem Traffic"}},{"id":"timesaving","name":"Zeitersparnis","color":"#8B5CF6","icon":"⏱️","question":"Marketing frisst alle Ressourcen?","desc":"Marketing-Aufwand reduzieren durch Automatisierung und KI","primary":[6,12,17,18,22,23,25],"secondary":[1,7,8,9,11,13,16,19],"context":{"1":"Ein klares ICP spart dir Stunden an falscher Ansprache.","6":"Ein Content-Plan ersetzt taegliches Ideensuchen.","7":"SEO-Automation erstellt Content-Briefings automatisch.","8":"KI-Copywriting beschleunigt die Texterstellung 5x.","9":"Ein Styleguide eliminiert endlose Korrekturschleifen.","11":"Social-Media-Automation spart Stunden pro Woche.","12":"E-Mail-Automation arbeitet 24/7 ohne dein Zutun.","13":"Automatisierte Ads brauchen weniger manuelle Steuerung.","16":"Landing-Page-Templates sparen Stunden bei jeder Kampagne.","17":"Nurturing-Automation ersetzt manuelles Follow-up.","18":"CRM-Integration eliminiert doppelte Dateneingabe.","19":"Retargeting laeuft automatisch im Hintergrund.","22":"Automatische Reports sparen Stunden an manueller Analyse.","23":"Journey-Mapping zeigt, wo Automatisierung am meisten bringt.","25":"Systematische Iteration verhindert Aktionismus."},"impactStatements":{"6":{"low":"Du verbringst Stunden mit Content-Planung ohne System.","high":"Dein Content-Plan laeuft wie ein Uhrwerk."},"12":{"low":"Du schreibst jede Mail manuell — das skaliert nicht.","high":"E-Mail-Flows arbeiten automatisch fuer dich."},"17":{"low":"Du verlierst Leads, weil du nicht hinterherkommst.","high":"Nurturing laeuft automatisch im Hintergrund."},"18":{"low":"Daten liegen in 5 verschiedenen Tools — kaum zu managen.","high":"Dein CRM ist die Single Source of Truth."},"22":{"low":"Du verbringst Stunden mit Reporting statt mit Optimieren.","high":"Dashboards liefern Insights auf Knopfdruck."},"23":{"low":"Ohne Journey-Mapping automatisierst du die falschen Schritte.","high":"Journey-Mapping zeigt genau, wo Automatisierung am meisten spart."},"25":{"low":"Du machst alles doppelt, weil es kein System gibt.","high":"Systematische Iteration spart dir Wochen pro Quartal."}},"actionPlan":{"month1":"Quick Wins: E-Mail-Automation + Content-Templates + CRM","month2":"Systematisieren: Reporting automatisieren + Workflows definieren","month3":"KI-Integration: KI-Agenten fuer repetitive Aufgaben einsetzen"},"cta":{"title":"Marketing muss nicht so zeitaufwaendig sein","text":"KI-Agenten uebernehmen repetitive Aufgaben — du fokussierst dich auf Strategie.","btn":"Marketing-Automatisierung starten"}},{"id":"brand","name":"Markenbekanntheit","color":"#EC4899","icon":"⭐","question":"Keiner kennt uns?","desc":"Markenbekanntheit aufbauen und Sichtbarkeit erhoehen","primary":[4,5,6,9,10,11,14,15,24],"secondary":[2,3,7,8,12,23],"context":{"2":"Personas zeigen, wo deine Zielgruppe unterwegs ist.","3":"Marktanalyse deckt unbesetzte Sichtbarkeits-Nischen auf.","4":"Wettbewerbsanalyse zeigt, wo du dich abheben kannst.","5":"Positionierung macht dich aus der Masse erkennbar.","6":"Content-Plan sorgt fuer kontinuierliche Praesenz.","7":"SEO macht dich fuer Suchende sichtbar.","8":"Gute Texte machen deine Marke merkwuerdig — im besten Sinne.","9":"Konsistente Brand Voice macht dich wiedererkennbar.","10":"Starke Visuals brennen sich ins Gedaechtnis.","11":"Social Media ist der schnellste Weg zu Sichtbarkeit.","12":"Newsletter halten deine Marke im Kopf der Zielgruppe.","14":"Influencer multiplizieren deine Reichweite.","15":"PR und Thought Leadership bauen Autoritaet auf.","23":"Die Customer Journey zeigt, wo Touchpoints fehlen.","24":"Positive Reviews staerken deine Online-Reputation."},"impactStatements":{"4":{"low":"Du weisst nicht, was dein Wettbewerb besser macht.","high":"Du kennst deine Differenzierung und kommunizierst sie klar."},"5":{"low":"Niemand weiss, wofuer deine Marke steht.","high":"Deine Marke hat eine klare, einpraegsame Position."},"6":{"low":"Sporadischer Content — du tauchst auf und verschwindest wieder.","high":"Dein Content-Plan sorgt fuer kontinuierliche Sichtbarkeit."},"9":{"low":"Deine Kommunikation klingt jedes Mal anders.","high":"Deine Brand Voice ist sofort wiedererkennbar."},"10":{"low":"Dein visuelles Erscheinungsbild ist unprofessionell.","high":"Deine Visuals heben dich vom Wettbewerb ab."},"11":{"low":"Du bist in Social Media ein Geist.","high":"Deine Social-Praesenz generiert organische Reichweite."},"14":{"low":"Du verlasst dich nur auf eigene Reichweite.","high":"Influencer-Partnerschaften multiplizieren deine Sichtbarkeit."},"15":{"low":"Keine Medien-Praesenz — du bist nur fuer Bestandskunden sichtbar.","high":"Du wirst als Experte in deiner Branche wahrgenommen."},"24":{"low":"Keine Bewertungen — potenzielle Kunden vertrauen dir nicht.","high":"Positive Reviews staerken deine Glaubwuerdigkeit massiv."}},"actionPlan":{"month1":"Fundament: Brand Voice + Visuals + Positionierung schaerfen","month2":"Sichtbarkeit: Content-Offensive + Social Media + PR starten","month3":"Multiplikation: Influencer + Community + Thought Leadership"},"cta":{"title":"Deine Marke ist unsichtbar — das kostet dich Kunden","text":"KI-Agenten bauen deine Markenpraesenz systematisch auf — ueber alle Kanaele.","btn":"Sichtbar werden in meiner Branche"}},{"id":"retention","name":"Kundenbindung","color":"#14B8A6","icon":"🔄","question":"Kunden kommen nicht wieder?","desc":"Bestandskunden halten und Customer Lifetime Value steigern","primary":[12,17,18,23,24],"secondary":[6,8,11,20],"context":{"6":"Regelmaessiger Content haelt die Beziehung lebendig.","8":"Gute Texte schaffen emotionale Bindung zur Marke.","11":"Social Media haelt den Dialog mit Kunden am Laufen.","12":"E-Mail ist der direkteste Kanal zu Bestandskunden.","17":"Nurturing gilt nicht nur fuer Neukunden — auch fuer Bestandskunden.","18":"CRM zeigt Abwanderungs-Risiken fruehzeitig.","20":"Faire Preise foerdern Loyalitaet.","23":"Journey-Mapping deckt Post-Purchase-Luecken auf.","24":"Bewertungen und UGC staerken die Community."},"impactStatements":{"12":{"low":"Kunden hoeren nach dem Kauf nie wieder von dir.","high":"E-Mails halten die Beziehung lebendig und foerdern Wiederkaeufe."},"17":{"low":"Nach dem Kauf endet die Beziehung.","high":"Nurturing macht Kunden zu treuen Stammkunden."},"18":{"low":"Du merkst erst zu spaet, wenn Kunden abwandern.","high":"Dein CRM warnt dich bei Abwanderungsrisiko."},"23":{"low":"Nach dem Kauf gibt es keine geplanten Touchpoints.","high":"Die Post-Purchase-Journey ist genauso durchdacht wie die Pre-Purchase."},"24":{"low":"Zufriedene Kunden teilen ihre Erfahrung nicht.","high":"Kunden werden zu Markenbotschaftern."}},"actionPlan":{"month1":"Basis: CRM-Daten bereinigen + Kunden-Segmente erstellen","month2":"Aktivieren: Post-Purchase E-Mails + Feedback-Loop + Community","month3":"Optimieren: Loyalty-Programm + Referral-System + Churn-Prevention"},"cta":{"title":"Neukunden gewinnen kostet 5x mehr als Bestandskunden halten","text":"KI-Agenten erkennen Abwanderungsrisiken frueh und aktivieren Bindungsmassnahmen automatisch.","btn":"Kunden zu Stammkunden machen"}},{"id":"teamefficiency","name":"Team-Effizienz","color":"#F59E0B","icon":"👥","question":"Team arbeitet aneinander vorbei?","desc":"Marketing-Team besser aufstellen und Prozesse optimieren","primary":[6,9,21,22,25],"secondary":[8,10,18,23],"context":{"6":"Ein Content-Plan gibt dem Team einen gemeinsamen Fahrplan.","8":"Copywriting-Templates sorgen fuer einheitliche Qualitaet.","9":"Brand Voice Guidelines eliminieren endlose Diskussionen.","10":"Design-System beschleunigt die Asset-Erstellung.","18":"CRM als Single Source of Truth verhindert Informationssilos.","21":"Test-Kultur ersetzt Meinungskriege durch Daten.","22":"Shared Dashboards schaffen Transparenz im Team.","23":"Journey-Mapping schafft ein gemeinsames Kundenverstaendnis.","25":"Iteration als Prozess statt als Ad-hoc-Reaktion."},"impactStatements":{"6":{"low":"Jeder im Team macht, was er fuer richtig haelt.","high":"Der Content-Plan gibt jedem klare Aufgaben und Deadlines."},"9":{"low":"Jeder Text klingt anders — kein einheitliches Auftreten.","high":"Die Brand Voice ist im ganzen Team verinnerlicht."},"21":{"low":"Entscheidungen werden nach Hierarchie getroffen, nicht nach Daten.","high":"Das Team trifft datenbasierte Entscheidungen."},"22":{"low":"Niemand weiss, was die anderen machen oder messen.","high":"Alle sehen die gleichen KPIs und arbeiten auf die gleichen Ziele."},"25":{"low":"Fehler wiederholen sich, weil es keinen Lernprozess gibt.","high":"Das Team lernt systematisch aus jedem Projekt."}},"actionPlan":{"month1":"Grundlagen: Brand Voice + Content-Plan + Shared Dashboard aufsetzen","month2":"Prozesse: Review-Workflows + Templates + Dokumentation","month3":"Kultur: Test-Kultur etablieren + Retrospektiven + Wissenstransfer"},"cta":{"title":"Dein Team koennte doppelt so effektiv sein","text":"KI-Agenten standardisieren Prozesse, eliminieren Reibungsverluste und schaffen Transparenz.","btn":"Marketing-Team aufstellen"}}],"export":{"defaultCtas":{"strategic":{"title":"Dein Strategy-Layer braucht Aufmerksamkeit","text":"Ohne klare ICP-Definition fehlt deinem Marketing das Fundament. Ein ICP-Agent kann dir in 30 Minuten helfen."},"content":{"title":"Dein Content braucht System","text":"Mit KI-Agenten baust du eine Content-Engine, die konsistent liefert - von der Idee bis zur Multi-Channel-Ausspielung."},"channel":{"title":"Deine Kanaele brauchen Strategie","text":"KI-Agenten koennen Social Media, E-Mail und Ads fuer dich orchestrieren und optimieren."},"conversion":{"title":"Deine Conversion braucht Optimierung","text":"Von Landing Pages bis CRM - KI-Agenten helfen dir, aus Traffic Kunden zu machen."},"optimization":{"title":"Dein Optimization-Layer braucht Daten","text":"Analytics- und Testing-Agenten helfen dir, datengetriebene Entscheidungen zur Gewohnheit zu machen."}}}};
+</script>
+<script>
+/**
+ * Assessment Engine v5.0.0
+ * Reusable assessment engine - data-driven from CONFIG object
+ *
+ * Expects: const CONFIG = { meta, theme, labels, scoring, tiers, levels, components, needs, export } to be defined before this script
+ * Expects: Chart.js to be loaded (CDN)
+ */
+(function(CONFIG) {
+  'use strict';
+
+  // Derived constants
+  const COMPONENT_COUNT = CONFIG.components.length;
+  const THESES_COUNT = CONFIG.components[0].theses.length;
+  const STORAGE_PREFIX = 'assess-' + CONFIG.meta.id;
+
+  // === STATE ===
+  let scores = new Array(COMPONENT_COUNT).fill(1);
+  let checkStates = Array.from({length: COMPONENT_COUNT}, () => new Array(THESES_COUNT).fill(false));
+  let touched = new Array(COMPONENT_COUNT).fill(false);
+  let activeNeed = null;
+  let miniRadarChart = null, resultsRadarChart = null;
+
+  function loadState() {
+    const p = new URLSearchParams(window.location.search);
+    const needParam = p.get('need');
+    if (needParam && CONFIG.needs.find(n => n.id === needParam)) {
+      activeNeed = needParam;
+    }
+    const s = p.get('s');
+    if (s) {
+      const d = s.replace(/-/g,'');
+      if (d.length === COMPONENT_COUNT) {
+        scores = d.split('').map(x => Math.max(1, Math.min(5, parseInt(x)||1)));
+        scores.forEach((sc, i) => { for(let t=0;t<THESES_COUNT;t++) checkStates[i][t] = t < (sc===1?0:sc); });
+        touched = new Array(COMPONENT_COUNT).fill(true);
+        showScreen('results');
+        return;
+      }
+    }
+    const sv = localStorage.getItem(STORAGE_PREFIX + '-scores');
+    if (sv) try { const q = JSON.parse(sv); if (Array.isArray(q)&&q.length===COMPONENT_COUNT) scores = q; } catch(e){}
+    const cs = localStorage.getItem(STORAGE_PREFIX + '-checks');
+    if (cs) try { const q = JSON.parse(cs); if (Array.isArray(q)&&q.length===COMPONENT_COUNT) checkStates = q; } catch(e){}
+    const tv = localStorage.getItem(STORAGE_PREFIX + '-touched');
+    if (tv) try { const q = JSON.parse(tv); if (Array.isArray(q)&&q.length===COMPONENT_COUNT) touched = q; } catch(e){}
+    const savedNeed = localStorage.getItem(STORAGE_PREFIX + '-need');
+    if (!activeNeed && savedNeed) activeNeed = savedNeed;
+  }
+
+  function saveState() {
+    localStorage.setItem(STORAGE_PREFIX + '-scores', JSON.stringify(scores));
+    localStorage.setItem(STORAGE_PREFIX + '-checks', JSON.stringify(checkStates));
+    localStorage.setItem(STORAGE_PREFIX + '-touched', JSON.stringify(touched));
+    localStorage.setItem(STORAGE_PREFIX + '-need', activeNeed || '');
+    const h = JSON.parse(localStorage.getItem(STORAGE_PREFIX + '-history')||'[]');
+    const today = new Date().toISOString().split('T')[0];
+    const idx = h.findIndex(x => x.date===today);
+    if (idx>=0) h[idx].scores=[...scores]; else h.push({date:today,scores:[...scores]});
+    if (h.length>30) h.shift();
+    localStorage.setItem(STORAGE_PREFIX + '-history', JSON.stringify(h));
+  }
+
+  // === NEED FUNCTIONS ===
+  function renderNeedLanding() {
+    const grid = document.getElementById('needsGrid');
+    grid.innerHTML = CONFIG.needs.map(n => `
+      <div class="need-card" onclick="selectNeed('${n.id}')" style="--need-color:${n.color}; border-color:${n.color}20">
+        <span class="need-icon">${n.icon}</span>
+        <div class="need-name">${n.name}</div>
+        <div class="need-divider" style="background:${n.color}"></div>
+        <div class="need-question">${n.question}</div>
+      </div>
+    `).join('');
+  }
+
+  function selectNeed(needId) {
+    activeNeed = needId;
+    localStorage.setItem(STORAGE_PREFIX + '-need', needId);
+    showScreen('assessment');
+  }
+
+  function startKomplettCheck() {
+    activeNeed = null;
+    localStorage.setItem(STORAGE_PREFIX + '-need', '');
+    document.getElementById('landingPyramidSection').classList.add('visible');
+    document.getElementById('landingNeedsSection').classList.add('hidden');
+  }
+
+  function showNeedsLanding() {
+    document.getElementById('landingPyramidSection').classList.remove('visible');
+    document.getElementById('landingNeedsSection').classList.remove('hidden');
+  }
+
+  function applyNeedContext() {
+    const banner = document.getElementById('needHeaderBanner');
+    document.querySelectorAll('.need-context-badge').forEach(b => b.remove());
+    document.querySelectorAll('.slider-item').forEach(s => s.classList.remove('need-dimmed', 'need-primary', 'need-secondary'));
+
+    if (!activeNeed) {
+      banner.style.display = 'none';
+      return;
+    }
+    const need = CONFIG.needs.find(n => n.id === activeNeed);
+    banner.style.display = 'flex';
+    banner.style.background = `color-mix(in srgb, ${need.color} 10%, var(--bg-card))`;
+    banner.style.border = `1px solid color-mix(in srgb, ${need.color} 30%, var(--gray-dark))`;
+    banner.innerHTML = `<div class="need-header-icon">${need.icon}</div><div><h3 style="color:${need.color}">Assessment fuer: ${need.name}</h3><p style="color:var(--gray-light)">${need.desc}</p></div>`;
+
+    const allItems = document.querySelectorAll('.slider-item');
+    let agentIdx = 0;
+    CONFIG.tiers.forEach(tier => {
+      CONFIG.components.filter(a => a.tier === tier.id).forEach(agent => {
+        const item = allItems[agentIdx];
+        if (item) {
+          const isPrimary = need.primary.includes(agent.id);
+          const isSecondary = need.secondary.includes(agent.id);
+          if (isPrimary) {
+            item.classList.add('need-primary');
+            if (need.context[agent.id]) {
+              const badge = document.createElement('div');
+              badge.className = 'need-context-badge primary';
+              badge.style.borderLeftColor = need.color;
+              badge.style.background = `color-mix(in srgb, ${need.color} 8%, transparent)`;
+              badge.style.color = need.color;
+              badge.innerHTML = `<strong>Wichtig fuer ${need.name}:</strong> ${need.context[agent.id]}`;
+              item.insertBefore(badge, item.firstChild);
+            }
+          } else if (isSecondary) {
+            item.classList.add('need-secondary');
+            if (need.context[agent.id]) {
+              const badge = document.createElement('div');
+              badge.className = 'need-context-badge secondary';
+              badge.innerHTML = `Unterstuetzt dein Ziel: ${need.context[agent.id]}`;
+              item.insertBefore(badge, item.firstChild);
+            }
+          } else {
+            item.classList.add('need-dimmed');
+          }
+        }
+        agentIdx++;
+      });
+    });
+  }
+
+  function getNeedScore(needId) {
+    const need = CONFIG.needs.find(n => n.id === needId);
+    if (!need) return 0;
+    let totalWeight = 0, weightedSum = 0;
+    need.primary.forEach(id => { weightedSum += scores[id-1] * CONFIG.scoring.needPrimaryMultiplier; totalWeight += CONFIG.scoring.needPrimaryMultiplier; });
+    need.secondary.forEach(id => { weightedSum += scores[id-1] * CONFIG.scoring.needSecondaryMultiplier; totalWeight += CONFIG.scoring.needSecondaryMultiplier; });
+    return totalWeight > 0 ? (weightedSum / totalWeight / 5) * 100 : 0;
+  }
+
+  function calcNeedPriority(agent, needId) {
+    const basePriority = calcPriority(agent);
+    if (!needId) return basePriority;
+    const need = CONFIG.needs.find(n => n.id === needId);
+    if (!need) return basePriority;
+    if (need.primary.includes(agent.id)) return basePriority * CONFIG.scoring.needPrimaryMultiplier;
+    if (need.secondary.includes(agent.id)) return basePriority * CONFIG.scoring.needSecondaryMultiplier;
+    return basePriority * CONFIG.scoring.needIrrelevantMultiplier;
+  }
+
+  function renderNeedResults() {
+    if (!activeNeed) return;
+    const need = CONFIG.needs.find(n => n.id === activeNeed);
+    const sc = getNeedScore(activeNeed);
+    const col = sc >= 70 ? 'var(--score-high)' : sc >= 40 ? 'var(--score-mid)' : 'var(--score-low)';
+
+    const weaknesses = need.primary
+      .map(id => ({id, score: scores[id-1], agent: CONFIG.components[id-1]}))
+      .filter(a => a.score <= 2)
+      .sort((a,b) => a.score - b.score)
+      .slice(0, 3);
+
+    const strengths = need.primary
+      .map(id => ({id, score: scores[id-1], agent: CONFIG.components[id-1]}))
+      .filter(a => a.score >= 4)
+      .sort((a,b) => b.score - a.score)
+      .slice(0, 3);
+
+    const allRelevant = [...need.primary, ...need.secondary];
+    const blockades = CONFIG.components
+      .filter(a => !allRelevant.includes(a.id) && scores[a.id-1] <= 2)
+      .filter(a => a.related.some(r => need.primary.includes(r)))
+      .slice(0, 3);
+
+    const needScoreLabels = CONFIG.labels.needScoreLabels;
+    let html = `<div class="need-score-section">
+      <div class="need-score-circle" style="border-color:${need.color}">
+        <div class="need-score-num" style="color:${need.color}">${sc >= 40 && sc < 80 ? sc.toFixed(1) : Math.round(sc)}</div>
+        <div style="font-size:0.8rem;color:var(--gray-light)">%</div>
+      </div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:4px">${need.name}-Readiness</div>
+      <div style="font-size:0.85rem;color:var(--gray-light)">${sc >= 70 ? needScoreLabels.good : sc >= 40 ? needScoreLabels.medium : needScoreLabels.critical}</div>
+    </div>`;
+
+    if (weaknesses.length > 0) {
+      html += `<div class="impact-section"><h3 style="color:var(--score-low)">\u26A0 Top-Schwachstellen</h3>`;
+      weaknesses.forEach(w => {
+        const impact = need.impactStatements[w.id];
+        html += `<div class="impact-card weakness"><h4>${w.agent.name} (Score: ${w.score}/5)</h4><p>${impact ? impact.low : w.agent.recommendations[w.score-1]}</p></div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (strengths.length > 0) {
+      html += `<div class="impact-section"><h3 style="color:var(--score-high)">\u2713 Dein Fundament</h3>`;
+      strengths.forEach(s => {
+        const impact = need.impactStatements[s.id];
+        html += `<div class="impact-card strength"><h4>${s.agent.name} (Score: ${s.score}/5)</h4><p>${impact ? impact.high : 'Gut aufgestellt \u2014 weiter so!'}</p></div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (blockades.length > 0) {
+      html += `<div class="impact-section"><h3 style="color:var(--score-mid)">\uD83D\uDD17 Systemblockaden</h3><p style="font-size:0.82rem;color:var(--gray-light);margin-bottom:12px">Diese Bausteine sind nicht direkt Teil deines Ziels, aber sie blockieren den Erfolg:</p>`;
+      blockades.forEach(b => {
+        const affected = b.related.filter(r => need.primary.includes(r)).map(r => CONFIG.components[r-1].name);
+        html += `<div class="impact-card blockade"><h4>${b.name} (Score: ${scores[b.id-1]}/5)</h4><p>Blockiert: ${affected.join(', ')}</p></div>`;
+      });
+      html += `</div>`;
+    }
+
+    document.getElementById('needGoalContent').innerHTML = html;
+  }
+
+  function render90DayPlan() {
+    if (!activeNeed) return;
+    const need = CONFIG.needs.find(n => n.id === activeNeed);
+
+    const allAgents = [...need.primary.map(id => ({id, weight: CONFIG.scoring.needPrimaryMultiplier})), ...need.secondary.map(id => ({id, weight: CONFIG.scoring.needSecondaryMultiplier}))];
+    const sorted = allAgents
+      .map(a => ({...a, score: scores[a.id-1], agent: CONFIG.components[a.id-1]}))
+      .sort((a,b) => (a.score - b.score) || (b.weight - a.weight));
+
+    const month1 = sorted.filter(a => a.score <= 2).slice(0, 4);
+    const month2 = sorted.filter(a => a.score === 3).slice(0, 4);
+    const month3 = sorted.filter(a => a.score >= 4).slice(0, 4);
+    if (month1.length === 0) month1.push(...sorted.slice(0, 2));
+    if (month2.length === 0) month2.push(...sorted.filter(a => !month1.includes(a)).slice(0, 2));
+
+    const months = [
+      {num: 1, title: need.actionPlan.month1, items: month1, color: 'var(--score-low)'},
+      {num: 2, title: need.actionPlan.month2, items: month2, color: 'var(--score-mid)'},
+      {num: 3, title: need.actionPlan.month3, items: month3, color: 'var(--score-high)'}
+    ];
+
+    let html = `<p style="color:var(--gray-light);font-size:0.9rem;margin-bottom:24px">Dein personalisierter Aktionsplan basierend auf deinen Scores \u2014 priorisiert fuer <strong style="color:${need.color}">${need.name}</strong>.</p>`;
+
+    months.forEach(m => {
+      html += `<div class="plan-month"><div class="plan-month-header"><div class="plan-month-num" style="background:${m.color}">M${m.num}</div><div><div class="plan-month-title">Monat ${m.num}</div><div class="plan-month-desc">${m.title}</div></div></div>`;
+      if (m.items.length === 0) {
+        html += `<div style="padding:10px 0;font-size:0.85rem;color:var(--gray-light)">Keine dringenden Massnahmen \u2014 fokussiere dich auf die anderen Monate.</div>`;
+      }
+      m.items.forEach(a => {
+        const scCol = a.score <= 2 ? 'var(--score-low)' : a.score === 3 ? 'var(--score-mid)' : 'var(--score-high)';
+        html += `<div class="plan-action"><div class="plan-action-score" style="background:${scCol}">${a.score}</div><div class="plan-action-info"><div class="plan-action-name">${a.agent.name}</div><div class="plan-action-tip">${a.agent.recommendations[a.score-1]}</div><div class="plan-action-agent">KI-Agent: ${a.agent.aiAgent.substring(0, 100)}...</div></div></div>`;
+      });
+      html += `</div>`;
+    });
+
+    document.getElementById('planContent').innerHTML = html;
+  }
+
+  // === NAVIGATION ===
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-'+id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    if (id==='assessment') applyNeedContext();
+    if (id==='results') renderResults();
+    if (id==='export') renderExport();
+  }
+
+  function jumpToTier(tierIndex) {
+    showScreen('assessment');
+    document.querySelectorAll('.tier-tab').forEach((t,i) => t.classList.toggle('active', i===tierIndex));
+    document.querySelectorAll('.slider-group').forEach((g,i) => g.classList.toggle('active', i===tierIndex));
+  }
+
+  function jumpToAgent(agentId) {
+    const agent = CONFIG.components[agentId-1];
+    const tierIdx = CONFIG.tiers.findIndex(t => t.id === agent.tier);
+    showScreen('assessment');
+    document.querySelectorAll('.tier-tab').forEach((t,i) => t.classList.toggle('active', i===tierIdx));
+    document.querySelectorAll('.slider-group').forEach((g,i) => g.classList.toggle('active', i===tierIdx));
+    setTimeout(() => {
+      const items = document.querySelectorAll('.slider-group.active .slider-item');
+      const localIdx = CONFIG.components.filter(a => a.tier === agent.tier).findIndex(a => a.id === agentId);
+      if (items[localIdx]) items[localIdx].scrollIntoView({behavior:'smooth', block:'center'});
+    }, 100);
+  }
+
+  // === ASSESSMENT ===
+  function initAssessment() {
+    const tabsEl = document.getElementById('tierTabs');
+    const groupsEl = document.getElementById('sliderGroups');
+    CONFIG.tiers.forEach((tier, ti) => {
+      const tiersComponentCount = CONFIG.components.filter(a => a.tier === tier.id).length;
+      const tab = document.createElement('button');
+      tab.className = 'tier-tab'+(ti===0?' active':'');
+      tab.innerHTML = `${tier.name} <span class="tier-tab-badge" id="tier-badge-${ti}">0/${tiersComponentCount}</span>`;
+      tab.style.setProperty('--active-tier-color', tier.color);
+      tab.onclick = () => { document.querySelectorAll('.tier-tab').forEach((t,i)=>t.classList.toggle('active',i===ti)); document.querySelectorAll('.slider-group').forEach((g,i)=>g.classList.toggle('active',i===ti)); };
+      tabsEl.appendChild(tab);
+
+      const group = document.createElement('div');
+      group.className = 'slider-group'+(ti===0?' active':'');
+      CONFIG.components.filter(a=>a.tier===tier.id).forEach(agent => {
+        const idx = agent.id-1;
+        const item = document.createElement('div');
+        item.className = 'slider-item';
+        const lvlTags = ['','Basic','Definiert','Managed','Optimized'];
+        const lvlColors = ['','#F97316','#F59E0B','#22C55E','#3B82F6'];
+        const thesenHtml = agent.theses.map((t,ti) => {
+          const chk = checkStates[idx][ti];
+          return `<div class="these-item ${chk?'checked':''}" role="checkbox" aria-checked="${chk}" tabindex="0" onclick="toggleThese(${agent.id},${ti},this)" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleThese(${agent.id},${ti},this);}">
+            <div class="these-cb ${chk?'checked':''}" aria-hidden="true"></div>
+            <div class="these-text">${t}</div>
+            ${ti>0?`<span class="these-level-tag" style="background:${lvlColors[ti]}">${lvlTags[ti]}</span>`:''}
+          </div>`;
+        }).join('');
+        const sc = scores[idx];
+        const emp = agent.recommendations[sc-1];
+        const empClass = sc>=4?'good':'action';
+        item.innerHTML = `
+          <div class="slider-label">
+            <span class="slider-name">${agent.id}. ${agent.name}</span>
+            <span class="slider-score" id="score-${agent.id}" style="color:${tier.color}">${sc}</span>
+          </div>
+          <div class="slider-desc">${agent.desc}</div>
+          <div class="slider-track"><div class="slider-fill" id="fill-${agent.id}" style="background:${tier.color};width:${(sc-1)/4*100}%"></div><input type="range" min="1" max="5" value="${sc}" style="--slider-color:${tier.color}" oninput="updateSlider(${agent.id},this.value)" aria-label="${agent.name}"></div>
+          <div class="slider-levels">${agent.levels.map((l,i)=>`<span title="${l}">${i+1}</span>`).join('')}</div>
+          <div class="thesen-list"><div class="thesen-header">${CONFIG.labels.thesesHeader}</div>${thesenHtml}</div>
+          <div class="empfehlung-box ${empClass}" id="emp-${agent.id}"><div class="empfehlung-label ${empClass}">${sc>=4?'Weiter so':'Naechster Schritt'}</div>${emp}</div>
+          <div class="ki-agent-hint"><strong>KI-Agent-Tipp:</strong> ${agent.aiAgent}</div>
+        `;
+        group.appendChild(item);
+      });
+      groupsEl.appendChild(group);
+    });
+    initMiniRadar(); updateProgress(); updateTierAverages(); updateTierBadges();
+  }
+
+  function toggleThese(agentId, theseIdx, el) {
+    const idx = agentId-1;
+    touched[idx] = true;
+    checkStates[idx][theseIdx] = !checkStates[idx][theseIdx];
+    const cb = el.querySelector('.these-cb');
+    cb.classList.toggle('checked');
+    el.classList.toggle('checked');
+    el.setAttribute('aria-checked', checkStates[idx][theseIdx]);
+    const checked = checkStates[idx].filter(Boolean).length;
+    const newScore = CONFIG.scoring.checkToScoreMap[checked];
+    scores[idx] = newScore;
+    syncSliderUI(agentId);
+    updateAll();
+  }
+
+  function updateSlider(agentId, value) {
+    const idx = agentId-1;
+    touched[idx] = true;
+    scores[idx] = parseInt(value);
+    syncSliderUI(agentId);
+    updateAll();
+  }
+
+  function syncSliderUI(agentId) {
+    const idx = agentId-1;
+    const v = scores[idx];
+    const agent = CONFIG.components[idx];
+    const tier = CONFIG.tiers.find(t=>t.id===agent.tier);
+    document.getElementById('score-'+agentId).textContent = v;
+    document.getElementById('fill-'+agentId).style.width = ((v-1)/4*100)+'%';
+    const slider = document.querySelector(`#fill-${agentId}`).parentElement.querySelector('input');
+    if (slider) slider.value = v;
+    const empEl = document.getElementById('emp-'+agentId);
+    if (empEl) {
+      const cls = v>=4?'good':'action';
+      empEl.className = 'empfehlung-box '+cls;
+      empEl.innerHTML = `<div class="empfehlung-label ${cls}">${v>=4?'Weiter so':'Naechster Schritt'}</div>${agent.recommendations[v-1]}`;
+    }
+  }
+
+  function updateAll() {
+    updateMiniRadar(); updateTierAverages(); updateProgress(); saveState();
+  }
+
+  function updateTierBadges() {
+    CONFIG.tiers.forEach((t, ti) => {
+      const agents = CONFIG.components.filter(a => a.tier === t.id);
+      const tiersComponentCount = agents.length;
+      const count = agents.filter(a => touched[a.id-1]).length;
+      const badge = document.getElementById('tier-badge-'+ti);
+      if (badge) {
+        badge.textContent = count >= tiersComponentCount ? '\u2713' : count+'/'+tiersComponentCount;
+        badge.classList.toggle('complete', count >= tiersComponentCount);
+      }
+    });
+  }
+
+  function updateProgress() {
+    const count = touched.filter(Boolean).length;
+    document.getElementById('assessmentProgress').style.width = (count/COMPONENT_COUNT*100)+'%';
+    document.getElementById('assessmentProgressLabel').textContent = count+' / '+COMPONENT_COUNT+' bewertet';
+    updateTierBadges();
+    if (count === COMPONENT_COUNT) {
+      const banner = document.getElementById('celebrationBanner');
+      if (banner && !banner.classList.contains('shown')) {
+        banner.classList.add('show');
+        banner.classList.add('shown');
+        banner.style.cursor = 'pointer';
+        banner.onclick = () => { banner.classList.remove('show'); showScreen('results'); };
+        setTimeout(() => banner.classList.remove('show'), 6000);
+      }
+    }
+  }
+
+  // === CALCULATIONS ===
+  function getTierAvg(tierId) { const a=CONFIG.components.filter(x=>x.tier===tierId); return a.reduce((s,x)=>s+scores[x.id-1],0)/a.length; }
+  function getOverallScore() { let ws=0,tw=0; CONFIG.tiers.forEach(t=>{ws+=getTierAvg(t.id)*t.weight;tw+=t.weight;}); return (ws/tw/5)*100; }
+  function calcPriority(agent) { const gap=5-scores[agent.id-1]; const t=CONFIG.tiers.find(x=>x.id===agent.tier); const dc=CONFIG.components.filter(a=>a.related.includes(agent.id)).length; return gap*t.weight*(1+CONFIG.scoring.dependencyWeight*dc); }
+
+  // === MINI RADAR ===
+  function initMiniRadar() {
+    const primaryColor = CONFIG.theme.primaryColor;
+    const r = parseInt(primaryColor.slice(1,3), 16);
+    const g = parseInt(primaryColor.slice(3,5), 16);
+    const b = parseInt(primaryColor.slice(5,7), 16);
+    const bgColor = `rgba(${r},${g},${b},0.15)`;
+
+    miniRadarChart = new Chart(document.getElementById('miniRadar').getContext('2d'), {
+      type:'radar', data:{ labels:CONFIG.tiers.map(t=>t.name), datasets:[{data:CONFIG.tiers.map(t=>getTierAvg(t.id)),backgroundColor:bgColor,borderColor:primaryColor,borderWidth:2,pointBackgroundColor:primaryColor,pointRadius:4}]},
+      options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},scales:{r:{min:0,max:5,ticks:{stepSize:1,display:false},grid:{color:'rgba(0,0,0,0.08)'},pointLabels:{color:'#767D8C',font:{family:'Montserrat',size:11,weight:'600'}},angleLines:{color:'rgba(0,0,0,0.08)'}}}}
+    });
+  }
+  function updateMiniRadar() { if(!miniRadarChart)return; miniRadarChart.data.datasets[0].data=CONFIG.tiers.map(t=>getTierAvg(t.id)); miniRadarChart.update('none'); }
+  function updateTierAverages() {
+    document.getElementById('tierAverages').innerHTML = CONFIG.tiers.map(t=>{const a=getTierAvg(t.id); return `<div class="tier-avg-row"><div class="tier-avg-dot" style="background:${t.color}"></div><div class="tier-avg-label">${t.name}</div><div class="tier-avg-val" style="color:${t.color}">${a.toFixed(1)}</div></div>`;}).join('');
+  }
+
+  // === RESULTS ===
+  function showResults() { saveState(); showScreen('results'); }
+
+  function renderResults() {
+    const tabsContainer = document.getElementById('resultsTabs');
+    document.querySelectorAll('.results-tab-dynamic').forEach(t => t.remove());
+
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      const goalTab = document.createElement('button');
+      goalTab.className = 'results-tab results-tab-dynamic active';
+      goalTab.dataset.tab = 'needgoal';
+      goalTab.textContent = need.icon + ' ' + need.name;
+      goalTab.onclick = () => showResultTab('needgoal');
+      tabsContainer.insertBefore(goalTab, tabsContainer.firstChild);
+
+      const planTab = document.createElement('button');
+      planTab.className = 'results-tab results-tab-dynamic';
+      planTab.dataset.tab = 'plan';
+      planTab.textContent = '\uD83D\uDCCB 90-Tage-Plan';
+      planTab.onclick = () => showResultTab('plan');
+      goalTab.after(planTab);
+
+      document.getElementById('panel-needgoal').style.display = '';
+      document.getElementById('panel-plan').style.display = '';
+
+      document.querySelectorAll('.results-tab:not(.results-tab-dynamic)').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.results-panel:not(#panel-needgoal):not(#panel-plan)').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-needgoal').classList.add('active');
+
+      renderNeedResults();
+      render90DayPlan();
+    } else {
+      document.getElementById('panel-needgoal').style.display = 'none';
+      document.getElementById('panel-plan').style.display = 'none';
+      document.querySelector('.results-tab[onclick="showResultTab(\'radar\')"]').classList.add('active');
+      document.getElementById('panel-radar').classList.add('active');
+    }
+
+    renderOverallScore(); renderTierBars(); renderResultsRadar(); renderHeatMap(); renderDependencyFlow(); renderPriorities(); renderAgents();
+  }
+
+  function renderOverallScore() {
+    const sc = getOverallScore();
+    const el = document.getElementById('overallScoreNum');
+    const r = document.getElementById('scoreRing'), c = 2*Math.PI*74;
+    const col = sc>=70 ? 'var(--score-high)' : sc>=40 ? 'var(--score-mid)' : 'var(--score-low)';
+    el.style.color = col;
+    r.setAttribute('stroke-dasharray', c);
+    r.setAttribute('stroke', col);
+    const target = Math.round(sc);
+    const duration = 1200;
+    const start = performance.now();
+    function animate(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      r.setAttribute('stroke-dashoffset', c - (eased * sc / 100) * c);
+      if (progress < 1) requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+    const l = document.getElementById('overallScoreLabel');
+    const scoreLabels = CONFIG.labels.scoreLabels;
+    if(sc>=80) l.textContent=scoreLabels.excellent;
+    else if(sc>=60) l.textContent=scoreLabels.good;
+    else if(sc>=40) l.textContent=scoreLabels.expandable;
+    else l.textContent=scoreLabels.critical;
+  }
+
+  function renderTierBars() {
+    document.getElementById('tierBars').innerHTML = CONFIG.tiers.map(t=>{const a=getTierAvg(t.id);return `<div class="tier-bar-item"><div class="tier-bar-label">${t.name}</div><div class="tier-bar-track"><div class="tier-bar-fill" style="height:${a/5*100}%;background:${t.color}"></div></div><div class="tier-bar-val" style="color:${t.color}">${a.toFixed(1)}</div></div>`;}).join('');
+  }
+
+  function renderResultsRadar() {
+    const primaryColor = CONFIG.theme.primaryColor;
+    const r = parseInt(primaryColor.slice(1,3), 16);
+    const g = parseInt(primaryColor.slice(3,5), 16);
+    const b = parseInt(primaryColor.slice(5,7), 16);
+    const bgColor = `rgba(${r},${g},${b},0.2)`;
+    const tierCount = CONFIG.tiers.length;
+    const goalData = new Array(tierCount).fill(5);
+
+    if(resultsRadarChart)resultsRadarChart.destroy();
+    resultsRadarChart = new Chart(document.getElementById('resultsRadar').getContext('2d'), {
+      type:'radar', data:{ labels:CONFIG.tiers.map(t=>t.name), datasets:[
+        {label:'Ist-Zustand',data:CONFIG.tiers.map(t=>getTierAvg(t.id)),backgroundColor:bgColor,borderColor:primaryColor,borderWidth:2,pointBackgroundColor:primaryColor,pointRadius:5},
+        {label:'Ziel',data:goalData,backgroundColor:'rgba(0,0,0,0.03)',borderColor:'rgba(0,0,0,0.15)',borderWidth:1,borderDash:[5,5],pointRadius:0}
+      ]},
+      options:{responsive:true,plugins:{legend:{labels:{color:'#767D8C',font:{family:'Montserrat'}}}},scales:{r:{min:0,max:5,ticks:{stepSize:1,color:'#767D8C',backdropColor:'rgba(255,255,255,0.8)'},grid:{color:'rgba(0,0,0,0.08)'},pointLabels:{color:'#1F1F1F',font:{family:'Montserrat',size:13,weight:'600'}},angleLines:{color:'rgba(0,0,0,0.08)'}}}}
+    });
+  }
+
+  function renderHeatMap() {
+    const sorted=[...CONFIG.components].sort((a,b)=>calcNeedPriority(b, activeNeed)-calcNeedPriority(a, activeNeed));
+    const mx=Math.max(...sorted.map(a=>calcNeedPriority(a, activeNeed)));
+    const need = activeNeed ? CONFIG.needs.find(n => n.id === activeNeed) : null;
+    document.getElementById('heatmapBody').innerHTML = sorted.map(a=>{
+      const s=scores[a.id-1],t=CONFIG.tiers.find(x=>x.id===a.tier),pr=calcNeedPriority(a, activeNeed),pp=mx>0?pr/mx*100:0;
+      const cls=s<=2?'low':s===3?'mid':'high';
+      const needBadge = need ? (need.primary.includes(a.id) ? `<span style="color:${need.color};font-size:0.65rem;margin-left:4px">\u25CF Primaer</span>` : need.secondary.includes(a.id) ? `<span style="color:var(--gray);font-size:0.65rem;margin-left:4px">\u25CB Sekundaer</span>` : '') : '';
+      return `<tr onclick="jumpToAgent(${a.id})" title="Klicke um ${a.name} zu bearbeiten"><td><strong>${a.id}. ${a.name}</strong>${needBadge}</td><td><span class="heatmap-tier-badge" style="background:${t.color}">${t.name}</span></td><td><span class="heatmap-score ${cls}">${s}</span></td><td style="font-size:0.75rem;color:var(--gray-light)">${a.levels[s-1]}</td><td><div class="heatmap-priority-bar"><div class="heatmap-priority-fill" style="width:${pp}%"></div></div></td></tr>`;
+    }).join('');
+  }
+
+  function renderDependencyFlow() {
+    const W=1100, H=700;
+    const tierIds = CONFIG.tiers.map(t => t.id);
+    const tierX={};
+    const spacing = W / (tierIds.length + 1);
+    tierIds.forEach((id, i) => { tierX[id] = Math.round(spacing * (i + 1)); });
+    const pos={};
+    CONFIG.tiers.forEach(t=>{
+      CONFIG.components.filter(a=>a.tier===t.id).forEach((a,i)=>{
+        pos[a.id]={x:tierX[t.id], y:90+i*115};
+      });
+    });
+    let lines='', nodes='';
+    CONFIG.components.forEach(a=>{
+      const p=pos[a.id];
+      a.related.forEach(r=>{
+        if(r>a.id && pos[r]) {
+          lines+=`<line class="dep-line" data-from="${a.id}" data-to="${r}" x1="${p.x}" y1="${p.y}" x2="${pos[r].x}" y2="${pos[r].y}"/>`;
+        }
+      });
+    });
+    CONFIG.components.forEach(a=>{
+      const p=pos[a.id], s=scores[a.id-1], t=CONFIG.tiers.find(x=>x.id===a.tier);
+      const col=s<=2?'#EF4444':s===3?'#F59E0B':'#22C55E';
+      const depCount=CONFIG.components.filter(x=>x.related.includes(a.id)).length;
+      const radius=Math.min(36, 26+depCount*1.8);
+      nodes+=`<g class="dep-node" data-id="${a.id}" onmouseenter="hlDeps(${a.id})" onmouseleave="clrDeps()" onclick="hlDeps(${a.id})">
+        <circle cx="${p.x}" cy="${p.y}" r="${radius}" fill="${col}" opacity="0.9" stroke="${t.color}" stroke-width="3"/>
+        <text x="${p.x}" y="${p.y+5}" text-anchor="middle">${a.id}</text>
+        <text class="dep-name-label" x="${p.x}" y="${p.y+radius+16}" text-anchor="middle">${a.name}</text>
+      </g>`;
+    });
+    const tl=CONFIG.tiers.map(t=>`<text x="${tierX[t.id]}" y="32" text-anchor="middle" fill="${t.color}" font-size="15" font-weight="800" font-family="Montserrat">${t.name}</text>`).join('');
+    const legend=`<g transform="translate(30,${H-40})">
+      <circle cx="10" cy="0" r="9" fill="#EF4444" opacity="0.9"/><text class="dep-legend-text" x="26" y="4">Score 1-2 (Kritisch)</text>
+      <circle cx="180" cy="0" r="9" fill="#F59E0B" opacity="0.9"/><text class="dep-legend-text" x="196" y="4">Score 3 (Ausbaufaehig)</text>
+      <circle cx="380" cy="0" r="9" fill="#22C55E" opacity="0.9"/><text class="dep-legend-text" x="396" y="4">Score 4-5 (Gut)</text>
+      <text class="dep-legend-hint" x="580" y="4">Groessere Kreise = mehr abhaengige Bausteine | Hover fuer Details</text>
+    </g>`;
+    document.getElementById('depFlow').innerHTML=`<svg viewBox="0 0 ${W} ${H}">${tl}${lines}${nodes}${legend}</svg>`;
+  }
+  function hlDeps(id){const a=CONFIG.components[id-1],tt=document.getElementById('tooltip');document.querySelectorAll('.dep-line').forEach(l=>{const f=+l.dataset.from,t=+l.dataset.to;if(f===id||t===id)l.classList.add('highlight');else l.style.opacity='0.15';});document.querySelectorAll('.dep-node').forEach(n=>{const nid=+n.dataset.id;if(nid!==id&&!a.related.includes(nid)&&!CONFIG.components[nid-1].related.includes(id))n.style.opacity='0.2';});const rn=a.related.map(r=>CONFIG.components[r-1].name).join(', '),dep=CONFIG.components.filter(x=>x.related.includes(id)).map(x=>x.name);tt.innerHTML=`<strong>${a.name}</strong> (Score: ${scores[id-1]})<br><span style="color:var(--gray-light)">Verbunden: ${rn}</span>${dep.length?'<br><span style="color:var(--primary-light)">Beeinflusst: '+dep.join(', ')+'</span>':''}`;tt.classList.add('visible');document.addEventListener('mousemove',mvTT);}
+  function mvTT(e){const t=document.getElementById('tooltip');t.style.left=(e.clientX+16)+'px';t.style.top=(e.clientY-10)+'px';}
+  function clrDeps(){document.querySelectorAll('.dep-line').forEach(l=>{l.classList.remove('highlight');l.style.opacity='';});document.querySelectorAll('.dep-node').forEach(n=>n.style.opacity='');document.getElementById('tooltip').classList.remove('visible');document.removeEventListener('mousemove',mvTT);}
+
+  function renderPriorities() {
+    const top5=[...CONFIG.components].map(a=>({...a,priority:calcNeedPriority(a, activeNeed),score:scores[a.id-1]})).sort((a,b)=>b.priority-a.priority).slice(0,5);
+    document.getElementById('prioritiesList').innerHTML = top5.map((a,i)=>{
+      const t=CONFIG.tiers.find(x=>x.id===a.tier),dep=CONFIG.components.filter(x=>x.related.includes(a.id)),imp=(a.priority*20).toFixed(0);
+      return `<div class="priority-card"><div class="priority-head"><div class="priority-rank">#${i+1}</div><div class="priority-info"><h4>${a.name} <span class="heatmap-tier-badge" style="background:${t.color};font-size:0.65rem;vertical-align:middle;margin-left:6px">${t.name}</span></h4><p>Level ${a.score} (${a.levels[a.score-1]}) \u00B7 ${dep.length} abhaengige Bausteine</p></div><div class="priority-impact"><div class="val">${imp}</div><div class="lbl">Impact</div></div></div><div class="priority-tip"><strong>Naechster Schritt:</strong> ${a.recommendations[a.score-1]}</div><div class="priority-agent"><strong>KI-Agent-Idee:</strong> ${a.aiAgent}</div></div>`;
+    }).join('');
+  }
+
+  function renderAgents() {
+    const sorted=[...CONFIG.components].map(a=>({...a,score:scores[a.id-1]})).filter(a=>a.score<=3).sort((a,b)=>calcNeedPriority(b, activeNeed)-calcNeedPriority(a, activeNeed)).slice(0,8);
+    const el=document.getElementById('agentsList');
+    if(sorted.length===0){el.innerHTML='<div style="text-align:center;padding:40px;color:var(--gray-light)"><h3 style="color:var(--white);margin-bottom:8px">Glueckwunsch!</h3><p>Alle Bausteine sind auf Level 4+. Du brauchst keine dringenden KI-Agenten - aber KI kann auch bei Optimierung helfen.</p></div>';return;}
+    el.innerHTML = `<p style="color:var(--gray-light);margin-bottom:20px;font-size:0.9rem">Basierend auf deinen Schwachstellen: Diese KI-Agenten haetten den groessten Impact auf dein Marketing-System.</p>`+
+      sorted.map(a=>{const t=CONFIG.tiers.find(x=>x.id===a.tier);
+      return `<div class="agent-card"><div class="agent-icon" style="background:${t.color}">${a.id}</div><div><h4>${a.name}-Agent <span class="heatmap-tier-badge" style="background:${t.color};font-size:0.65rem;vertical-align:middle;margin-left:6px">Score: ${a.score}/5</span></h4><div class="agent-desc">${a.aiAgent}</div><div class="agent-prompt-wrap"><div class="agent-prompt">${a.aiPrompt}</div><button class="btn-copy-prompt" onclick="copyAgentPrompt(this)" title="Prompt kopieren">&#128203;</button></div></div></div>`;
+    }).join('');
+  }
+
+  function showResultTab(tab) {
+    document.querySelectorAll('.results-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.results-panel').forEach(p=>p.classList.remove('active'));
+    // Find static tab by onclick attribute
+    const tabEl = document.querySelector(`.results-tab[onclick*="'${tab}'"]`);
+    if (tabEl) tabEl.classList.add('active');
+    // Find dynamic tab by data-tab attribute
+    const dynTab = document.querySelector(`.results-tab-dynamic[data-tab="${tab}"]`);
+    if (dynTab) dynTab.classList.add('active');
+    const panel = document.getElementById('panel-'+tab);
+    if (panel) panel.classList.add('active');
+  }
+
+  // === EXPORT ===
+  function renderExport() {
+    const lines=[];
+    const exportLabels = CONFIG.labels.exportLabels || {};
+
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      lines.push((exportLabels.goalPrefix || 'Mein Hauptziel: ') + need.name + ' (' + need.question + ')', '');
+    }
+
+    lines.push(exportLabels.preamble || ('Ich habe ein ' + CONFIG.labels.assessmentTitle + ' durchgefuehrt mit ' + COMPONENT_COUNT + ' Bausteinen in ' + CONFIG.tiers.length + ' Kategorien.'),'','ERGEBNISSE:','');
+    CONFIG.tiers.forEach(t=>{
+      lines.push(`--- ${t.name.toUpperCase()} (Schnitt: ${getTierAvg(t.id).toFixed(1)}/5) ---`);
+      CONFIG.components.filter(a=>a.tier===t.id).forEach(a=>{
+        const s=scores[a.id-1]; lines.push(`${a.name}: ${s}/5 (${a.levels[s-1]})`);
+        if(s<=3){ const unmet=a.theses.filter((_,ti)=>!checkStates[a.id-1][ti]);
+          if(unmet.length)lines.push(`  Noch offen: "${unmet[0]}"`);
+        }
+      }); lines.push('');
+    });
+    lines.push('Gesamt-Score: '+Math.round(getOverallScore())+'%','');
+    lines.push(exportLabels.topAgentsHeader || 'TOP KI-AGENT-EMPFEHLUNGEN:');
+    [...CONFIG.components].filter(a=>scores[a.id-1]<=3).sort((a,b)=>calcNeedPriority(b, activeNeed)-calcNeedPriority(a, activeNeed)).slice(0,5).forEach((a,i)=>{
+      lines.push(`${i+1}. ${a.name}-Agent: ${a.aiAgent}`);
+    });
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      lines.push('', (exportLabels.goalReiteration || 'Mein Hauptziel ist: ') + need.name + '. ' + need.question);
+      lines.push(exportLabels.needAnalysisRequest || 'Bitte analysiere meine Staerken und Schwaechen SPEZIELL im Hinblick auf dieses Ziel. Erstelle einen priorisierten 90-Tage-Aktionsplan, der mich diesem Ziel naeher bringt, mit konkreten KI-Agent-Einsatzmoeglichkeiten. Beruecksichtige die Abhaengigkeiten zwischen den Bausteinen.');
+    } else {
+      lines.push('', exportLabels.generalAnalysisRequest || 'Bitte analysiere meine Staerken und Schwaechen. Erstelle einen priorisierten 90-Tage-Aktionsplan mit konkreten KI-Agent-Einsatzmoeglichkeiten fuer jede Schwachstelle. Beruecksichtige die Abhaengigkeiten zwischen den Bausteinen.');
+    }
+    document.getElementById('promptPreview').textContent = lines.join('\n');
+
+    const scoreStr=[]; for(let i=0;i<COMPONENT_COUNT;i+=5)scoreStr.push(scores.slice(i,i+5).join(''));
+    let shareUrl = window.location.origin+window.location.pathname+'?s='+scoreStr.join('-');
+    if (activeNeed) shareUrl += '&need=' + activeNeed;
+    document.getElementById('shareUrl').textContent = shareUrl;
+
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      document.getElementById('ctaTitle').textContent = need.cta.title;
+      document.getElementById('ctaText').textContent = need.cta.text;
+    } else {
+      const weak=CONFIG.tiers.reduce((w,t)=>getTierAvg(t.id)<getTierAvg(w.id)?t:w,CONFIG.tiers[0]);
+      const ctas=CONFIG.export.defaultCtas;
+      const c=ctas[weak.id]; document.getElementById('ctaTitle').textContent=c.title; document.getElementById('ctaText').textContent=c.text;
+    }
+  }
+
+  function copyPrompt(){navigator.clipboard.writeText(document.getElementById('promptPreview').textContent).then(()=>{const f=document.getElementById('copyFeedback');f.classList.add('show');setTimeout(()=>f.classList.remove('show'),2000);});}
+  function copyShareUrl(){navigator.clipboard.writeText(document.getElementById('shareUrl').textContent).then(()=>{const f=document.getElementById('shareFeedback');f.classList.add('show');setTimeout(()=>f.classList.remove('show'),2000);});}
+
+  function copyAgentPrompt(btn) {
+    const text = btn.previousElementSibling.textContent.replace('Beispiel-Prompt: ', '');
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '\u2713';
+      btn.style.color = 'var(--score-high)';
+      setTimeout(() => { btn.textContent = '\uD83D\uDCCB'; btn.style.color = ''; }, 1500);
+    });
+  }
+
+  // === RESET ===
+  function resetAssessment() {
+    if(!confirm('Alle Bewertungen zuruecksetzen? Das kann nicht rueckgaengig gemacht werden.')) return;
+    scores = new Array(COMPONENT_COUNT).fill(1);
+    checkStates = Array.from({length: COMPONENT_COUNT}, () => new Array(THESES_COUNT).fill(false));
+    touched = new Array(COMPONENT_COUNT).fill(false);
+    activeNeed = null;
+    localStorage.removeItem(STORAGE_PREFIX + '-scores');
+    localStorage.removeItem(STORAGE_PREFIX + '-checks');
+    localStorage.removeItem(STORAGE_PREFIX + '-touched');
+    localStorage.removeItem(STORAGE_PREFIX + '-need');
+    document.getElementById('tierTabs').innerHTML = '';
+    document.getElementById('sliderGroups').innerHTML = '';
+    if(miniRadarChart){miniRadarChart.destroy();miniRadarChart=null;}
+    initAssessment();
+  }
+
+  // === PYRAMID ===
+  function renderPyramid() {
+    const container = document.getElementById('pyramidContainer');
+    if (!container) return;
+    const tierCount = CONFIG.tiers.length;
+    // Render tiers in reverse order (smallest/top first)
+    const reversed = [...CONFIG.tiers].reverse();
+    container.innerHTML = reversed.map((tier, i) => {
+      const width = 50 + (i / (tierCount - 1)) * 48; // 50% to 98%
+      const tierIdx = CONFIG.tiers.indexOf(tier);
+      const compCount = CONFIG.components.filter(c => c.tier === tier.id).length;
+      return `<div class="pyramid-tier" style="width:${width}%;background:var(--tier-${tier.id});cursor:pointer" onclick="jumpToTier(${tierIdx})">${tier.name}<span class="pyramid-count">${compCount} ${CONFIG.labels.componentLabel}</span></div>`;
+    }).join('');
+  }
+
+  // === EXPOSE GLOBALS ===
+  window.showScreen = showScreen;
+  window.jumpToTier = jumpToTier;
+  window.jumpToAgent = jumpToAgent;
+  window.showResults = showResults;
+  window.showResultTab = showResultTab;
+  window.resetAssessment = resetAssessment;
+  window.selectNeed = selectNeed;
+  window.startKomplettCheck = startKomplettCheck;
+  window.showNeedsLanding = showNeedsLanding;
+  window.copyPrompt = copyPrompt;
+  window.copyShareUrl = copyShareUrl;
+  window.copyAgentPrompt = copyAgentPrompt;
+  window.toggleThese = toggleThese;
+  window.updateSlider = updateSlider;
+  window.hlDeps = hlDeps;
+  window.clrDeps = clrDeps;
+
+  // === INIT ===
+  loadState();
+  renderNeedLanding();
+  renderPyramid();
+  initAssessment();
+  if (activeNeed) applyNeedContext();
+
+})(CONFIG);
+
+</script>
+
+</body>
+</html>
